@@ -1,0 +1,313 @@
+/* ==========================================
+   ADMIN MENU STYLES
+   ========================================== */
+
+.admin-menu {
+    background-color: #F0F2F5;
+    min-height: 100vh;
+}
+
+/* ---------- Header ---------- */
+.admin-menu .page-header {
+    background: linear-gradient(135deg, #1A1A2E, #2D2D44);
+    padding: 30px 0;
+}
+
+.admin-menu .page-header h1 {
+    color: white;
+    font-weight: 700;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.admin-menu .page-header .btn-warning {
+    padding: 10px 25px;
+    font-weight: 600;
+    border-radius: var(--border-radius-sm);
+}
+
+.admin-menu .page-header .btn-warning:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ---------- Table Card ---------- */
+.admin-menu .card {
+    border: none;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.admin-menu .card-header {
+    background: white;
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 20px;
+}
+
+.admin-menu .card-header h5 {
+    font-weight: 600;
+    color: var(--dark-color);
+    margin: 0;
+}
+
+.admin-menu .card-body {
+    padding: 0;
+}
+
+/* ---------- Filter Form ---------- */
+.admin-menu .card-header .form-control,
+.admin-menu .card-header .form-select {
+    border-radius: var(--border-radius-sm);
+    padding: 8px 15px;
+}
+
+.admin-menu .card-header .form-control:focus,
+.admin-menu .card-header .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+}
+
+.admin-menu .card-header .btn-outline-warning {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    border-radius: var(--border-radius-sm);
+    padding: 8px 20px;
+}
+
+.admin-menu .card-header .btn-outline-warning:hover {
+    background-color: var(--primary-color);
+    color: var(--dark-color);
+}
+
+/* ---------- Menu Table ---------- */
+.admin-menu .table {
+    margin: 0;
+}
+
+.admin-menu .table thead th {
+    background-color: #F8F9FA;
+    border-bottom: 2px solid var(--border-color);
+    padding: 15px 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.admin-menu .table tbody td {
+    padding: 15px 20px;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-menu .table tbody tr:hover {
+    background-color: #FFF8E1;
+}
+
+.admin-menu .table .badge {
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    border-radius: 20px;
+}
+
+.admin-menu .table .badge.bg-success {
+    background-color: #28A745 !important;
+}
+
+.admin-menu .table .badge.bg-danger {
+    background-color: #DC3545 !important;
+}
+
+/* ---------- Table Actions ---------- */
+.admin-menu .table .btn-outline-warning {
+    padding: 4px 10px;
+    border-radius: var(--border-radius-sm);
+    margin-right: 5px;
+}
+
+.admin-menu .table .btn-outline-warning:hover {
+    background-color: var(--primary-color);
+    color: var(--dark-color);
+}
+
+.admin-menu .table .btn-outline-danger {
+    padding: 4px 10px;
+    border-radius: var(--border-radius-sm);
+}
+
+.admin-menu .table .btn-outline-danger:hover {
+    background-color: #DC3545;
+    color: white;
+}
+
+/* ---------- Pagination ---------- */
+.admin-menu .mt-4 {
+    padding: 15px 20px;
+}
+
+.admin-menu .pagination .page-link {
+    color: var(--dark-color);
+    border-radius: var(--border-radius-sm);
+    margin: 0 4px;
+    border: none;
+    padding: 8px 14px;
+    font-size: 0.9rem;
+}
+
+.admin-menu .pagination .page-link:hover {
+    background-color: var(--primary-color);
+    color: var(--dark-color);
+}
+
+.admin-menu .pagination .page-item.active .page-link {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--dark-color);
+}
+
+.admin-menu .pagination .page-item.disabled .page-link {
+    color: var(--text-muted);
+    background-color: transparent;
+}
+
+/* ---------- Modal ---------- */
+#menuModal .modal-content {
+    border-radius: var(--border-radius);
+    border: none;
+}
+
+#menuModal .modal-header {
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 20px;
+}
+
+#menuModal .modal-header h5 {
+    font-weight: 700;
+    color: var(--dark-color);
+}
+
+#menuModal .modal-body {
+    padding: 20px 25px;
+}
+
+#menuModal .modal-body .form-control,
+#menuModal .modal-body .form-select {
+    padding: 10px 15px;
+    border-radius: var(--border-radius-sm);
+}
+
+#menuModal .modal-body .form-control:focus,
+#menuModal .modal-body .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+}
+
+#menuModal .modal-body .form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+#menuModal .modal-body .btn-warning {
+    padding: 12px 30px;
+    font-weight: 600;
+    border-radius: var(--border-radius-sm);
+}
+
+#menuModal .modal-body .btn-warning:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+#menuModal .modal-body .form-control[type="file"] {
+    padding: 8px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 992px) {
+    .admin-menu .page-header .d-flex {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start !important;
+    }
+
+    .admin-menu .card-header .row .col-md-4,
+    .admin-menu .card-header .row .col-md-8 {
+        margin-bottom: 10px;
+    }
+
+    .admin-menu .table {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-menu .page-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .admin-menu .table thead th,
+    .admin-menu .table tbody td {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+    }
+
+    .admin-menu .table .btn {
+        padding: 2px 8px;
+        font-size: 0.8rem;
+    }
+
+    .admin-menu .table .badge {
+        font-size: 0.65rem;
+        padding: 4px 10px;
+    }
+
+    #menuModal .modal-body {
+        padding: 15px;
+    }
+
+    .admin-menu .card-header .row .col-md-5,
+    .admin-menu .card-header .row .col-md-4,
+    .admin-menu .card-header .row .col-md-3 {
+        width: 100%;
+        flex: 0 0 100%;
+        margin-bottom: 8px;
+    }
+
+    .admin-menu .card-header form {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 576px) {
+    .admin-menu .page-header .btn-warning {
+        width: 100%;
+        text-align: center;
+    }
+
+    .admin-menu .table {
+        font-size: 0.75rem;
+    }
+
+    .admin-menu .table thead th,
+    .admin-menu .table tbody td {
+        padding: 8px 6px;
+    }
+
+    .admin-menu .table .btn {
+        font-size: 0.7rem;
+        padding: 2px 6px;
+    }
+
+    .admin-menu .pagination .page-link {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    .admin-menu .mt-4 {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center !important;
+    }
+}

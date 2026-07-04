@@ -1,0 +1,297 @@
+/* ==========================================
+   ADMIN ORDERS STYLES
+   ========================================== */
+
+.admin-orders {
+    background-color: #F0F2F5;
+    min-height: 100vh;
+}
+
+/* ---------- Header ---------- */
+.admin-orders .page-header {
+    background: linear-gradient(135deg, #1A1A2E, #2D2D44);
+    padding: 30px 0;
+}
+
+.admin-orders .page-header h1 {
+    color: white;
+    font-weight: 700;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.admin-orders .page-header .badge {
+    padding: 8px 18px;
+    font-size: 0.9rem;
+    border-radius: 20px;
+}
+
+.admin-orders .page-header .badge.bg-warning {
+    background-color: #FFC107 !important;
+    color: #1A1A2E;
+}
+
+.admin-orders .page-header .badge.bg-primary {
+    background-color: #007BFF !important;
+}
+
+/* ---------- Filter Form ---------- */
+.admin-orders .card-header .form-control,
+.admin-orders .card-header .form-select {
+    border-radius: var(--border-radius-sm);
+    padding: 8px 15px;
+}
+
+.admin-orders .card-header .form-control:focus,
+.admin-orders .card-header .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+}
+
+.admin-orders .card-header .btn-outline-warning {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    border-radius: var(--border-radius-sm);
+    padding: 8px 20px;
+}
+
+.admin-orders .card-header .btn-outline-warning:hover {
+    background-color: var(--primary-color);
+    color: var(--dark-color);
+}
+
+/* ---------- Orders Table ---------- */
+.admin-orders .table {
+    margin: 0;
+}
+
+.admin-orders .table thead th {
+    background-color: #F8F9FA;
+    border-bottom: 2px solid var(--border-color);
+    padding: 15px 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.admin-orders .table tbody td {
+    padding: 15px 20px;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-orders .table tbody tr:hover {
+    background-color: #FFF8E1;
+}
+
+.admin-orders .table .badge {
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    border-radius: 20px;
+}
+
+.admin-orders .table .badge.bg-success {
+    background-color: #28A745 !important;
+}
+
+.admin-orders .table .badge.bg-warning {
+    background-color: #FFC107 !important;
+    color: #1A1A2E;
+}
+
+.admin-orders .table .badge.bg-primary {
+    background-color: #007BFF !important;
+}
+
+.admin-orders .table .badge.bg-info {
+    background-color: #17A2B8 !important;
+    color: white;
+}
+
+.admin-orders .table .badge.bg-danger {
+    background-color: #DC3545 !important;
+}
+
+/* ---------- Table Actions ---------- */
+.admin-orders .table .btn-outline-warning {
+    padding: 4px 10px;
+    border-radius: var(--border-radius-sm);
+    margin-right: 5px;
+}
+
+.admin-orders .table .btn-outline-warning:hover {
+    background-color: var(--primary-color);
+    color: var(--dark-color);
+}
+
+.admin-orders .table .btn-outline-success {
+    padding: 4px 10px;
+    border-radius: var(--border-radius-sm);
+}
+
+.admin-orders .table .btn-outline-success:hover {
+    background-color: #28A745;
+    color: white;
+}
+
+/* ---------- Modal ---------- */
+.admin-orders .modal-content {
+    border-radius: var(--border-radius);
+    border: none;
+}
+
+.admin-orders .modal-header {
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 20px;
+}
+
+.admin-orders .modal-header h5 {
+    font-weight: 700;
+    color: var(--dark-color);
+}
+
+.admin-orders .modal-body {
+    padding: 20px 25px;
+}
+
+.admin-orders .modal-body .form-select {
+    padding: 10px 15px;
+    border-radius: var(--border-radius-sm);
+}
+
+.admin-orders .modal-body .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+}
+
+.admin-orders .modal-body .btn-warning {
+    padding: 12px 30px;
+    font-weight: 600;
+    border-radius: var(--border-radius-sm);
+}
+
+.admin-orders .modal-body .btn-warning:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ---------- Pagination ---------- */
+.admin-orders .mt-4 {
+    padding: 15px 20px;
+}
+
+.admin-orders .pagination .page-link {
+    color: var(--dark-color);
+    border-radius: var(--border-radius-sm);
+    margin: 0 4px;
+    border: none;
+    padding: 8px 14px;
+    font-size: 0.9rem;
+}
+
+.admin-orders .pagination .page-link:hover {
+    background-color: var(--primary-color);
+    color: var(--dark-color);
+}
+
+.admin-orders .pagination .page-item.active .page-link {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--dark-color);
+}
+
+.admin-orders .pagination .page-item.disabled .page-link {
+    color: var(--text-muted);
+    background-color: transparent;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 992px) {
+    .admin-orders .page-header .d-flex {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start !important;
+    }
+
+    .admin-orders .card-header .row .col-md-4,
+    .admin-orders .card-header .row .col-md-8 {
+        margin-bottom: 10px;
+    }
+
+    .admin-orders .table {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-orders .page-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .admin-orders .table thead th,
+    .admin-orders .table tbody td {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+    }
+
+    .admin-orders .table .btn {
+        padding: 2px 8px;
+        font-size: 0.8rem;
+    }
+
+    .admin-orders .table .badge {
+        font-size: 0.65rem;
+        padding: 4px 10px;
+    }
+
+    .admin-orders .card-header .row .col-md-4,
+    .admin-orders .card-header .row .col-md-3,
+    .admin-orders .card-header .row .col-md-2 {
+        width: 100%;
+        flex: 0 0 100%;
+        margin-bottom: 8px;
+    }
+
+    .admin-orders .card-header form {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 576px) {
+    .admin-orders .page-header .badge {
+        font-size: 0.75rem;
+        padding: 4px 12px;
+    }
+
+    .admin-orders .table {
+        font-size: 0.75rem;
+    }
+
+    .admin-orders .table thead th,
+    .admin-orders .table tbody td {
+        padding: 8px 6px;
+    }
+
+    .admin-orders .table .btn {
+        font-size: 0.7rem;
+        padding: 2px 6px;
+    }
+
+    .admin-orders .pagination .page-link {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    .admin-orders .mt-4 {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center !important;
+    }
+
+    .admin-orders .modal-body {
+        padding: 15px;
+    }
+}

@@ -1,0 +1,168 @@
+/* ==========================================
+   LOGIN PAGE STYLES
+   ========================================== */
+
+.login-page {
+    background: linear-gradient(135deg, #FFF8E1 0%, #FFFFFF 100%);
+    min-height: 100vh;
+}
+
+.login-section {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
+/* ---------- Login Banner ---------- */
+.login-banner {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.login-banner img {
+    max-width: 80%;
+    margin-bottom: 30px;
+}
+
+.login-banner h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-bottom: 15px;
+}
+
+.login-banner p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.login-features {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-color);
+}
+
+.feature-item i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+/* ---------- Login Card ---------- */
+.login-card {
+    border-radius: var(--border-radius);
+    background: white;
+}
+
+.login-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    font-size: 2rem;
+    color: white;
+}
+
+.login-card h2 {
+    font-weight: 700;
+    color: var(--dark-color);
+}
+
+.login-card .form-control {
+    padding: 12px 15px;
+    border-radius: var(--border-radius-sm);
+}
+
+.login-card .input-group-text {
+    background-color: white;
+    border-right: none;
+    color: var(--text-muted);
+}
+
+.login-card .input-group .form-control {
+    border-left: none;
+}
+
+/* ---------- Password Toggle ---------- */
+#togglePassword {
+    border-left: none;
+}
+
+#togglePassword:hover {
+    background-color: transparent;
+}
+
+/* ---------- Forgot Password ---------- */
+.forgot-password {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.forgot-password:hover {
+    color: var(--primary-color);
+}
+
+/* ---------- Register Link ---------- */
+.register-link {
+    color: var(--primary-color);
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.register-link:hover {
+    color: var(--secondary-color);
+}
+
+/* ---------- Social Login ---------- */
+.btn-outline-danger,
+.btn-outline-primary {
+    padding: 10px;
+    border-radius: var(--border-radius-sm);
+    font-weight: 500;
+}
+
+.btn-outline-danger:hover,
+.btn-outline-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 992px) {
+    .login-banner {
+        display: none;
+    }
+
+    .login-card {
+        margin: 20px auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .login-card .card-body {
+        padding: 30px 20px !important;
+    }
+
+    .login-card h2 {
+        font-size: 1.5rem;
+    }
+
+    .login-features {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}

@@ -1,0 +1,244 @@
+/* ==========================================
+   ERROR PAGE STYLES
+   ========================================== */
+
+.error-page {
+    background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+/* ---------- Error Section ---------- */
+.error-section {
+    padding: 60px 0;
+    width: 100%;
+}
+
+.error-icon {
+    font-size: 6rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.error-icon .text-warning {
+    color: var(--primary-color) !important;
+}
+
+.error-icon .text-danger {
+    color: #DC3545 !important;
+}
+
+.error-icon .text-primary {
+    color: #007BFF !important;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* ---------- Error Code ---------- */
+.error-code {
+    font-size: 6rem;
+    font-weight: 800;
+    color: var(--dark-color);
+    margin-bottom: 10px;
+    letter-spacing: 4px;
+}
+
+/* ---------- Error Title ---------- */
+.error-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-bottom: 15px;
+}
+
+/* ---------- Error Message ---------- */
+.error-message {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 500px;
+    margin: 0 auto 20px;
+    line-height: 1.8;
+}
+
+/* ---------- Error Details ---------- */
+.error-section .alert-secondary {
+    background-color: #F8F9FA;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    padding: 15px 20px;
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: left;
+}
+
+.error-section .alert-secondary strong {
+    color: var(--dark-color);
+}
+
+.error-section .alert-secondary small {
+    color: var(--text-muted);
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    word-break: break-all;
+    display: block;
+    margin-top: 5px;
+}
+
+/* ---------- Action Buttons ---------- */
+.error-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.error-actions .btn-warning {
+    padding: 14px 40px;
+    font-weight: 600;
+    border-radius: var(--border-radius-sm);
+    font-size: 1.1rem;
+}
+
+.error-actions .btn-warning:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.error-actions .btn-outline-secondary {
+    padding: 14px 40px;
+    font-weight: 600;
+    border-radius: var(--border-radius-sm);
+    font-size: 1.1rem;
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.error-actions .btn-outline-secondary:hover {
+    background-color: var(--dark-color);
+    color: white;
+    border-color: var(--dark-color);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ---------- Help Section ---------- */
+.help-section {
+    margin-top: 40px;
+    padding: 30px;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.help-section h5 {
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-bottom: 10px;
+}
+
+.help-section p {
+    color: var(--text-muted);
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.help-section a {
+    color: var(--primary-color);
+    font-weight: 500;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.help-section a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .error-icon {
+        font-size: 4rem;
+    }
+
+    .error-code {
+        font-size: 4rem;
+    }
+
+    .error-title {
+        font-size: 1.5rem;
+    }
+
+    .error-message {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+
+    .error-actions {
+        flex-direction: column;
+        align-items: center;
+        padding: 0 20px;
+    }
+
+    .error-actions .btn {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+
+    .help-section {
+        margin: 30px 20px 0;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .error-icon {
+        font-size: 3rem;
+    }
+
+    .error-code {
+        font-size: 3rem;
+    }
+
+    .error-title {
+        font-size: 1.2rem;
+    }
+
+    .error-message {
+        font-size: 0.9rem;
+        padding: 0 15px;
+    }
+
+    .error-actions .btn {
+        font-size: 0.9rem;
+        padding: 10px 16px;
+    }
+
+    .error-section .alert-secondary {
+        padding: 12px 15px;
+        margin: 15px 15px;
+        font-size: 0.85rem;
+    }
+
+    .help-section {
+        padding: 15px;
+        margin: 20px 15px 0;
+    }
+
+    .help-section h5 {
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,324 @@
+/* ==========================================
+   ADMIN DASHBOARD STYLES
+   ========================================== */
+
+.admin-dashboard {
+    background-color: #F0F2F5;
+    min-height: 100vh;
+}
+
+/* ---------- Statistics Cards ---------- */
+.stat-card {
+    border: none;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.stat-card .card-body {
+    padding: 25px 20px;
+}
+
+.stat-card .card-body h6 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-card .card-body h2 {
+    font-weight: 700;
+    color: var(--dark-color);
+    margin: 5px 0;
+}
+
+.stat-card .card-body .fa-solid {
+    opacity: 0.7;
+    transition: var(--transition);
+}
+
+.stat-card:hover .card-body .fa-solid {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.stat-card .text-success {
+    color: #28A745 !important;
+}
+
+.stat-card .text-warning {
+    color: var(--primary-color) !important;
+}
+
+.stat-card .text-primary {
+    color: #007BFF !important;
+}
+
+.stat-card .text-danger {
+    color: #DC3545 !important;
+}
+
+/* ---------- Chart Section ---------- */
+.charts-section .card {
+    border: none;
+    border-radius: var(--border-radius);
+}
+
+.charts-section .card-header {
+    background: white;
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 20px;
+}
+
+.charts-section .card-header h5 {
+    font-weight: 600;
+    color: var(--dark-color);
+    margin: 0;
+}
+
+.charts-section .card-body {
+    padding: 20px;
+}
+
+/* ---------- Top Categories ---------- */
+.charts-section .card-body .list-unstyled li {
+    margin-bottom: 15px;
+}
+
+.charts-section .card-body .list-unstyled li:last-child {
+    margin-bottom: 0;
+}
+
+.charts-section .card-body .d-flex {
+    font-size: 0.9rem;
+}
+
+.charts-section .card-body .progress {
+    height: 6px;
+    border-radius: 10px;
+    background-color: #E9ECEF;
+    margin-top: 5px;
+}
+
+.charts-section .card-body .progress-bar {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    transition: width 1s ease;
+}
+
+/* ---------- Recent Orders Table ---------- */
+.recent-orders .card {
+    border: none;
+    border-radius: var(--border-radius);
+}
+
+.recent-orders .card-header {
+    background: white;
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 20px;
+}
+
+.recent-orders .card-header h5 {
+    font-weight: 600;
+    color: var(--dark-color);
+    margin: 0;
+}
+
+.recent-orders .card-body {
+    padding: 0;
+}
+
+.recent-orders .table {
+    margin: 0;
+}
+
+.recent-orders .table thead th {
+    background-color: #F8F9FA;
+    border-bottom: 2px solid var(--border-color);
+    padding: 15px 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.recent-orders .table tbody td {
+    padding: 15px 20px;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.recent-orders .table tbody tr:hover {
+    background-color: #FFF8E1;
+}
+
+.recent-orders .table .badge {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+}
+
+.recent-orders .table .btn-outline-warning {
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    border-radius: var(--border-radius-sm);
+}
+
+/* ---------- Quick Actions ---------- */
+.action-card {
+    border: none;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    background-color: #FFF8E1;
+}
+
+.action-card .card-body {
+    padding: 30px 20px;
+}
+
+.action-card .fa-solid {
+    transition: var(--transition);
+}
+
+.action-card:hover .fa-solid {
+    transform: scale(1.1);
+}
+
+.action-card h5 {
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-top: 10px;
+}
+
+.action-card .text-primary {
+    color: #007BFF !important;
+}
+
+.action-card .text-success {
+    color: #28A745 !important;
+}
+
+.action-card .text-warning {
+    color: var(--primary-color) !important;
+}
+
+.action-card .text-danger {
+    color: #DC3545 !important;
+}
+
+/* ---------- Admin Profile ---------- */
+.admin-profile .card {
+    border: none;
+    border-radius: var(--border-radius);
+}
+
+.admin-profile .card-body {
+    padding: 25px;
+}
+
+.admin-profile img {
+    border: 3px solid var(--primary-color);
+}
+
+.admin-profile h4 {
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-bottom: 5px;
+}
+
+.admin-profile .text-muted {
+    font-size: 0.9rem;
+}
+
+.admin-profile .btn-outline-danger {
+    border-radius: var(--border-radius-sm);
+    padding: 10px 25px;
+}
+
+.admin-profile .btn-outline-danger:hover {
+    background-color: #DC3545;
+    color: white;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 992px) {
+    .stat-card .card-body h2 {
+        font-size: 1.8rem;
+    }
+
+    .action-card .card-body {
+        padding: 20px 15px;
+    }
+
+    .action-card .fa-solid {
+        font-size: 2.5rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .stat-card .card-body {
+        padding: 20px 15px;
+    }
+
+    .stat-card .card-body h2 {
+        font-size: 1.5rem;
+    }
+
+    .recent-orders .table {
+        font-size: 0.85rem;
+    }
+
+    .recent-orders .table thead th,
+    .recent-orders .table tbody td {
+        padding: 10px 12px;
+    }
+
+    .admin-profile .text-end {
+        text-align: left !important;
+        margin-top: 15px;
+    }
+
+    .admin-profile .btn-outline-danger {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .stat-card .card-body .d-flex {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+
+    .stat-card .card-body .fa-solid {
+        margin-top: 10px;
+    }
+
+    .recent-orders .table {
+        font-size: 0.75rem;
+    }
+
+    .recent-orders .table thead th,
+    .recent-orders .table tbody td {
+        padding: 8px 6px;
+    }
+
+    .recent-orders .table .btn {
+        font-size: 0.7rem;
+        padding: 2px 8px;
+    }
+
+    .admin-profile .card-body {
+        padding: 15px;
+        text-align: center;
+    }
+}

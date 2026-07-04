@@ -1,0 +1,198 @@
+/* ==========================================
+   CHECKOUT PAGE STYLES
+   ========================================== */
+
+.checkout-page {
+    background-color: #F8F9FA;
+    min-height: 100vh;
+}
+
+/* ---------- Checkout Cards ---------- */
+.checkout-page .card {
+    border: none;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.checkout-page .card-header {
+    background-color: white;
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 20px;
+}
+
+.checkout-page .card-header h4 {
+    font-weight: 700;
+    color: var(--dark-color);
+    margin: 0;
+}
+
+.checkout-page .card-body {
+    padding: 20px;
+}
+
+/* ---------- Address Selection ---------- */
+.checkout-page .form-check {
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    transition: var(--transition);
+    margin-bottom: 10px;
+}
+
+.checkout-page .form-check:hover {
+    border-color: var(--primary-color);
+}
+
+.checkout-page .form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.checkout-page .form-check-input:checked + .form-check-label {
+    color: var(--dark-color);
+}
+
+.checkout-page .form-check-label strong {
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+.checkout-page .btn-outline-warning {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    border-radius: var(--border-radius-sm);
+    padding: 8px 20px;
+}
+
+.checkout-page .btn-outline-warning:hover {
+    background-color: var(--primary-color);
+    color: var(--dark-color);
+}
+
+/* ---------- Payment Method ---------- */
+.checkout-page .form-check {
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    transition: var(--transition);
+}
+
+.checkout-page .form-check:hover {
+    border-color: var(--primary-color);
+}
+
+.checkout-page .form-check .form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.checkout-page .form-check .fa-brands,
+.checkout-page .form-check .fa-solid {
+    font-size: 1.1rem;
+}
+
+/* ---------- Order Instructions ---------- */
+.checkout-page textarea {
+    border-radius: var(--border-radius-sm);
+    resize: vertical;
+    padding: 12px 15px;
+}
+
+.checkout-page textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+}
+
+/* ---------- Order Summary ---------- */
+.checkout-page .card-body .d-flex {
+    font-size: 0.95rem;
+}
+
+.checkout-page .card-body .d-flex span:last-child {
+    font-weight: 600;
+}
+
+.checkout-page .card-body hr {
+    margin: 15px 0;
+}
+
+.checkout-page .card-body h4 {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* ---------- Place Order Button ---------- */
+.checkout-page .btn-warning {
+    padding: 14px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: var(--border-radius-sm);
+}
+
+.checkout-page .btn-warning:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.checkout-page .btn-outline-secondary {
+    border-radius: var(--border-radius-sm);
+    padding: 10px;
+}
+
+/* ---------- Security Info Cards ---------- */
+.checkout-page .card .card-body .fa-solid {
+    width: 20px;
+    font-size: 1.1rem;
+}
+
+.checkout-page .card .card-body .text-warning {
+    color: var(--primary-color);
+}
+
+.checkout-page .card .card-body .text-success {
+    color: var(--success-color);
+}
+
+.checkout-page .card .card-body .text-primary {
+    color: var(--info-color);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 992px) {
+    .checkout-page .col-lg-8 {
+        order: 2;
+    }
+
+    .checkout-page .col-lg-4 {
+        order: 1;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .checkout-page .card-body {
+        padding: 15px;
+    }
+
+    .checkout-page .form-check {
+        padding: 10px 12px;
+    }
+
+    .checkout-page .form-check-label {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .checkout-page .card-header h4 {
+        font-size: 1.1rem;
+    }
+
+    .checkout-page .card-body .d-flex {
+        font-size: 0.85rem;
+    }
+
+    .checkout-page .card-body h4 {
+        font-size: 1.1rem;
+    }
+}

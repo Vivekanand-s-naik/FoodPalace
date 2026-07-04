@@ -1,0 +1,215 @@
+/* ==========================================
+   CART PAGE STYLES
+   ========================================== */
+
+.cart-page {
+    background-color: #F8F9FA;
+    min-height: 100vh;
+}
+
+/* ---------- Cart Items ---------- */
+.cart-page .card {
+    border: none;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.cart-page .card .card-body {
+    padding: 20px;
+}
+
+.cart-page .card img {
+    height: 120px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius-sm);
+}
+
+.cart-page .card h4 {
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-bottom: 5px;
+}
+
+.cart-page .card h5 {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.cart-page .card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+/* ---------- Quantity Input ---------- */
+.cart-page .card .form-control {
+    width: 80px;
+    padding: 6px 10px;
+    text-align: center;
+    border-radius: var(--border-radius-sm);
+}
+
+.cart-page .card .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+}
+
+.cart-page .card .btn-success {
+    padding: 6px 12px;
+    border-radius: var(--border-radius-sm);
+}
+
+/* ---------- Remove Button ---------- */
+.cart-page .card .btn-danger {
+    border-radius: var(--border-radius-sm);
+    padding: 8px 16px;
+}
+
+.cart-page .card .btn-danger:hover {
+    transform: scale(1.05);
+}
+
+/* ---------- Empty Cart ---------- */
+.alert-warning {
+    background-color: #FFF8E1;
+    border: 2px dashed var(--primary-color);
+    padding: 60px 20px;
+}
+
+.alert-warning h3 {
+    color: var(--dark-color);
+    margin-bottom: 15px;
+}
+
+.alert-warning .btn-warning {
+    margin-top: 15px;
+    padding: 10px 40px;
+}
+
+/* ---------- Order Summary Card ---------- */
+.cart-page .card-header {
+    background-color: white;
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 20px;
+}
+
+.cart-page .card-header h4 {
+    font-weight: 700;
+    color: var(--dark-color);
+    margin: 0;
+}
+
+.cart-page .card-header h5 {
+    font-weight: 600;
+    margin: 0;
+}
+
+.cart-page .card-body .d-flex {
+    font-size: 0.95rem;
+}
+
+.cart-page .card-body .d-flex span:last-child {
+    font-weight: 600;
+}
+
+.cart-page .card-body hr {
+    margin: 15px 0;
+}
+
+.cart-page .card-body h4 {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* ---------- Coupon Input ---------- */
+.cart-page .card-body .input-group {
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+}
+
+.cart-page .card-body .input-group .form-control {
+    border-radius: 0;
+    padding: 10px 15px;
+}
+
+.cart-page .card-body .input-group .btn {
+    border-radius: 0;
+    padding: 10px 20px;
+    font-weight: 500;
+}
+
+/* ---------- Delivery Info Card ---------- */
+.cart-page .card .card-body .fa-solid {
+    width: 20px;
+}
+
+.cart-page .card .card-body .text-warning {
+    color: var(--primary-color);
+}
+
+.cart-page .card .card-body .text-success {
+    color: var(--success-color);
+}
+
+.cart-page .card .card-body .text-primary {
+    color: var(--info-color);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 992px) {
+    .cart-page .card img {
+        height: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cart-page .card .card-body {
+        padding: 15px;
+    }
+
+    .cart-page .card .row .col-md-3 {
+        margin-bottom: 10px;
+    }
+
+    .cart-page .card .row .col-md-9 {
+        padding: 0 15px;
+    }
+
+    .cart-page .card h4 {
+        font-size: 1.1rem;
+    }
+
+    .cart-page .card .btn-danger {
+        margin-top: 8px;
+        width: 100%;
+    }
+
+    .cart-page .card .form-control {
+        width: 60px;
+    }
+
+    .alert-warning {
+        padding: 40px 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .cart-page .card .row .col-md-3 {
+        display: none;
+    }
+
+    .cart-page .card .row .col-md-9 {
+        padding: 0;
+    }
+
+    .cart-page .card .d-flex {
+        flex-wrap: wrap;
+    }
+
+    .cart-page .card .d-flex .text-end {
+        text-align: left !important;
+        margin-top: 10px;
+        width: 100%;
+    }
+}
