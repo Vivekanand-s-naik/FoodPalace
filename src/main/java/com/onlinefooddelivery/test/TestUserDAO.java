@@ -68,7 +68,7 @@ public class TestUserDAO {
             // 5. Validate User
             // -------------------------------
 
-            boolean valid = dao.validateUser(
+            User valid = dao.validateUser(
                     "rahul@test.com",
                     "123456"
             );

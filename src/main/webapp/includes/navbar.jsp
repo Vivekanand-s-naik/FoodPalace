@@ -37,34 +37,37 @@
 				</li>
 
 				<li class="nav-item">
-					<a class="nav-link" href="${pageContext.request.contextPath}/customer/restaurants.jsp">Restaurants</a>
+					<a class="nav-link" href="${pageContext.request.contextPath}/restaurants">Restaurants</a>
 				</li>
 
+				<!-- REMOVE THIS LINE - Menu is accessed via restaurant cards -->
+				<%--
 				<li class="nav-item">
-					<a class="nav-link" href="${pageContext.request.contextPath}/customer/menu.jsp">Menu</a>
+					<a class="nav-link" href="${pageContext.request.contextPath}/menu">Menu</a>
 				</li>
+				--%>
 
 				<li class="nav-item">
-					<a class="nav-link" href="${pageContext.request.contextPath}/customer/cart.jsp">
+					<a class="nav-link" href="${pageContext.request.contextPath}/cart">
 						<i class="fa-solid fa-cart-shopping"></i> Cart
 					</a>
 				</li>
 
 				<li class="nav-item">
-					<a class="nav-link" href="${pageContext.request.contextPath}/customer/orders.jsp">My Orders</a>
+					<a class="nav-link" href="${pageContext.request.contextPath}/orders">My Orders</a>
 				</li>
 
 				<!-- Admin Dashboard (visible only to admin) -->
 				<c:if test="${sessionScope.userRole == 'ADMIN'}">
 					<li class="nav-item">
-						<a class="nav-link text-warning" href="${pageContext.request.contextPath}/admin/dashboard.jsp">
+						<a class="nav-link text-warning" href="${pageContext.request.contextPath}/admin/dashboard">
 							<i class="fa-solid fa-gauge-high"></i> Dashboard
 						</a>
 					</li>
 				</c:if>
 
 				<li class="nav-item">
-					<a class="nav-link" href="${pageContext.request.contextPath}/customer/profile.jsp">Profile</a>
+					<a class="nav-link" href="${pageContext.request.contextPath}/profile">Profile</a>
 				</li>
 
 			</ul>
@@ -95,12 +98,12 @@
 					<c:otherwise>
 
 						<!-- Logged Out -->
-						<a href="${pageContext.request.contextPath}/auth/login.jsp" class="btn btn-outline-light">
+						<a href="${pageContext.request.contextPath}/login" class="btn btn-outline-light">
 							<i class="fa-solid fa-right-to-bracket me-1"></i>
 							Login
 						</a>
 
-						<a href="${pageContext.request.contextPath}/auth/register.jsp" class="btn btn-warning">
+						<a href="${pageContext.request.contextPath}/register" class="btn btn-warning">
 							<i class="fa-solid fa-user-plus me-1"></i>
 							Register
 						</a>

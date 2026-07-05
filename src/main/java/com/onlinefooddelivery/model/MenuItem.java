@@ -1,7 +1,6 @@
 package com.onlinefooddelivery.model;
 
 public class MenuItem {
-
     private int itemId;
     private int restaurantId;
     private String itemName;
@@ -9,24 +8,9 @@ public class MenuItem {
     private double price;
     private String category;
     private boolean available;
-    private String image;
+    private String imagePath;
 
-    public MenuItem() {
-    }
-
-    public MenuItem(int itemId, int restaurantId, String itemName,
-                    String description, double price, String category,
-                    boolean available, String image) {
-        this.itemId = itemId;
-        this.restaurantId = restaurantId;
-        this.itemName = itemName;
-        this.description = description;
-        this.price = price;
-        this.category = category;
-        this.available = available;
-        this.image = image;
-    }
-
+    // Getters and Setters
     public int getItemId() {
         return itemId;
     }
@@ -83,25 +67,18 @@ public class MenuItem {
         this.available = available;
     }
 
-    public String getImage() {
-        return image;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     @Override
     public String toString() {
-        return "MenuItem{" +
-                "itemId=" + itemId +
-                ", restaurantId=" + restaurantId +
-                ", itemName='" + itemName + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", category='" + category + '\'' +
-                ", available=" + available +
-                ", image='" + image + '\'' +
-                '}';
+        return "MenuItem [itemId=" + itemId + ", restaurantId=" + restaurantId 
+                + ", itemName=" + itemName + ", price=" + price + ", category=" + category 
+                + ", available=" + available + ", imagePath=" + imagePath + "]";
     }
 }

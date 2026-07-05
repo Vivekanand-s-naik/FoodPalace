@@ -72,6 +72,22 @@ public class CartServlet extends HttpServlet {
             // Get cart items with details
             List<CartItem> cartItems = cartItemDAO.getCartItemsByCartId(cart.getCartId());
             
+         // Debug
+            System.out.println("=== CART DEBUG ===");
+            System.out.println("Cart ID: " + cart.getCartId());
+            System.out.println("User ID: " + userId);
+            System.out.println("Cart Items Count: " + (cartItems != null ? cartItems.size() : 0));
+            if (cartItems != null) {
+                for (CartItem item : cartItems) {
+                    System.out.println("Item: " + item.getItemName() + 
+                                      ", Price: " + item.getPrice() + 
+                                      ", Qty: " + item.getQuantity() +
+                                      ", Image: " + item.getImagePath());
+                }
+            }
+            System.out.println("==================");
+            
+            
             // Calculate totals
             double subTotal = 0;
             if (cartItems != null) {
@@ -120,11 +136,14 @@ public class CartServlet extends HttpServlet {
         try {
             // Get or create cart
             Cart cart = cartDAO.getCartByUserId(userId);
+            System.out.println("Cart from DB: " + (cart != null ? cart.getCartId() : "null"));
             if (cart == null) {
+            	System.out.println("Creating new cart for user: " + userId);
                 cart = new Cart();
                 cart.setUserId(userId);
                 cartDAO.addCart(cart);
                 cart = cartDAO.getCartByUserId(userId);
+                System.out.println("New cart created: " + (cart != null ? cart.getCartId() : "failed"));
             }
 
             if ("add".equals(action)) {
@@ -169,7 +188,8 @@ public class CartServlet extends HttpServlet {
                     newItem.setQuantity(quantity);
                     cartItemDAO.addCartItem(newItem);
                 }
-
+                System.out.println("Adding item - MenuId: " + menuId + ", Quantity: " + quantity);
+                System.out.println("Cart ID: " + cart.getCartId());
                 response.sendRedirect(request.getContextPath() + "/cart");
 
             } else if ("update".equals(action)) {

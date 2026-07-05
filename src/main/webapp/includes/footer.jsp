@@ -69,7 +69,7 @@
 
 					<li>
 
-						<a href="${pageContext.request.contextPath}/customer/restaurants.jsp">
+						<a href="${pageContext.request.contextPath}/restaurants.jsp">
 
 							Restaurants
 
@@ -79,7 +79,7 @@
 
 					<li>
 
-						<a href="${pageContext.request.contextPath}/customer/menu.jsp">
+						<a href="${pageContext.request.contextPath}/menu.jsp">
 
 							Menu
 
@@ -89,7 +89,7 @@
 
 					<li>
 
-						<a href="${pageContext.request.contextPath}/customer/cart.jsp">
+						<a href="${pageContext.request.contextPath}/cart.jsp">
 
 							Cart
 
@@ -135,7 +135,7 @@
 
 					<li>
 
-						<a href="${pageContext.request.contextPath}/customer/orders.jsp">
+						<a href="${pageContext.request.contextPath}/orders.jsp">
 
 							My Orders
 

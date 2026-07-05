@@ -474,7 +474,7 @@
 
 						<a
 
-							href="${pageContext.request.contextPath}/customer/restaurants.jsp"
+							href="${pageContext.request.contextPath}/restaurants"
 
 							class="btn btn-warning">
 

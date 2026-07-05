@@ -7,8 +7,12 @@ public class CartItem {
     private int itemId;
     private int quantity;
     private double price;
+    private String imagePath;  
+    private String description; 
+    private String itemName;
 
-    public CartItem() {
+
+	public CartItem() {
     }
 
     public CartItem(int cartItemId, int cartId, int itemId, int quantity) {
@@ -60,9 +64,35 @@ public class CartItem {
         this.quantity = quantity;
     }
 
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+    
     @Override
     public String toString() {
         return "CartItem{" +
+        		"itemName=" + itemName + 
                 "cartItemId=" + cartItemId +
                 ", cartId=" + cartId +
                 ", itemId=" + itemId +

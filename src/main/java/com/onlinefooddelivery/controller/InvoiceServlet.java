@@ -149,7 +149,7 @@ public class InvoiceServlet extends HttpServlet {
             double subtotal = 0;
             if (orderItems != null) {
                 for (OrderItem item : orderItems) {
-                    double total = item.getQuantjity() * item.getPrice();
+                    double total = item.getQuantity() * item.getPrice();
                     subtotal += total;
                     out.println("<tr>");
                     out.println("<td>" + item.getItemName() + "</td>");

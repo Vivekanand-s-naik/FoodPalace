@@ -41,7 +41,7 @@
 
 				<div class="hero-buttons">
 
-					<a href="${pageContext.request.contextPath}/customer/restaurants.jsp"
+					<a href="${pageContext.request.contextPath}/restaurants"
 						class="btn btn-warning btn-lg">
 
 						Order Now
@@ -352,7 +352,7 @@
 
 		</p>
 
-		<a href="${pageContext.request.contextPath}/customer/restaurants.jsp"
+		<a href="${pageContext.request.contextPath}/restaurants.jsp"
 			class="btn btn-warning btn-lg">
 
 			Explore Restaurants

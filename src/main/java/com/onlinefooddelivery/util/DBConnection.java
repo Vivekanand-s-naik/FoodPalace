@@ -6,52 +6,51 @@ import java.sql.SQLException;
 
 public class DBConnection {
 
-    // Database Configuration
     private static final String URL = "jdbc:mysql://localhost:3306/OnlineFoodDelivery";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "root"; 
+    
+    private static Connection connection = null;
 
-    // Private constructor to prevent object creation
-    private DBConnection() {
+    static {
+        try {
+            // Load MySQL JDBC Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            System.err.println("MySQL JDBC Driver not found!");
+        }
     }
 
-    // Method to establish database connection
-    public static Connection getConnection() {
-
-        Connection connection = null;
-
-        try {
-
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
+    public static Connection getConnection() throws SQLException {
+        if (connection == null || connection.isClosed()) {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-
-        } catch (ClassNotFoundException e) {
-
-            System.out.println("MySQL JDBC Driver not found.");
-            e.printStackTrace();
-
-        } catch (SQLException e) {
-
-            System.out.println("Failed to connect to database.");
-            e.printStackTrace();
-
         }
-
         return connection;
     }
 
-    // Method to close connection
-    public static void closeConnection(Connection connection) {
-
+    public static void closeConnection() {
         if (connection != null) {
-
             try {
                 connection.close();
+                connection = null;
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }
+    }
 
+    // Test the connection
+    public static void main(String[] args) {
+        try {
+            Connection conn = DBConnection.getConnection();
+            if (conn != null) {
+                System.out.println("Database connected successfully!");
+                conn.close();
+            }
+        } catch (SQLException e) {
+            System.err.println("Database connection failed!");
+            e.printStackTrace();
         }
     }
 }

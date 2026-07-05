@@ -1,442 +1,54 @@
-<%@ page language="java"
-	contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ taglib prefix="c"
-	uri="jakarta.tags.core"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
 <%@ include file="../includes/header.jsp"%>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/admin-menu.css">
+	href="${pageContext.request.contextPath}/assets/css/menu.css">
 
 <%@ include file="../includes/navbar.jsp"%>
 
-<main class="admin-menu">
+<main class="menu-page">
 
 	<!-- ==========================================
-				PAGE HEADER
+				RESTAURANT HEADER
 	========================================== -->
 
-	<section class="page-header py-4">
+	<section class="restaurant-header py-4">
 
 		<div class="container">
 
-			<div class="d-flex justify-content-between align-items-center">
+			<div class="row align-items-center">
 
-				<h1>
+				<div class="col-lg-3">
 
-					Manage Menu Items
-
-				</h1>
-
-				<a
-
-					href="${pageContext.request.contextPath}/admin/menu.jsp?action=add"
-
-					class="btn btn-warning">
-
-					<i class="fa-solid fa-plus me-2"></i>
-
-					Add Menu Item
-
-				</a>
-
-			</div>
-
-		</div>
-
-	</section>
-
-	<!-- ==========================================
-				FILTERS & SEARCH
-	========================================== -->
-
-	<section class="filters-section py-4">
-
-		<div class="container">
-
-			<div class="card shadow-sm">
-
-				<div class="card-body">
-
-					<form
-
-						action="${pageContext.request.contextPath}/admin/menu"
-
-						method="get"
-
-						class="row g-3">
-
-						<div class="col-md-4">
-
-							<label class="form-label">
-
-								Restaurant
-
-							</label>
-
-							<select
-
-								name="restaurantId"
-
-								class="form-select">
-
-								<option value="">
-
-									All Restaurants
-
-								</option>
-
-								<c:forEach
-
-									var="rest"
-
-									items="${restaurantList}">
-
-									<option
-
-										value="${rest.restaurantId}"
-
-										${rest.restaurantId == param.restaurantId ? 'selected' : ''}>
-
-										${rest.name}
-
-									</option>
-
-								</c:forEach>
-
-							</select>
-
-						</div>
-
-						<div class="col-md-4">
-
-							<label class="form-label">
-
-								Category
-
-							</label>
-
-							<select
-
-								name="category"
-
-								class="form-select">
-
-								<option value="">
-
-									All Categories
-
-								</option>
-
-								<option value="Veg"
-
-									${param.category == 'Veg' ? 'selected' : ''}>
-
-									Veg
-
-								</option>
-
-								<option value="Non-Veg"
-
-									${param.category == 'Non-Veg' ? 'selected' : ''}>
-
-									Non-Veg
-
-								</option>
-
-								<option value="Beverage"
-
-									${param.category == 'Beverage' ? 'selected' : ''}>
-
-									Beverage
-
-								</option>
-
-								<option value="Dessert"
-
-									${param.category == 'Dessert' ? 'selected' : ''}>
-
-									Dessert
-
-								</option>
-
-							</select>
-
-						</div>
-
-						<div class="col-md-4">
-
-							<label class="form-label">
-
-								Search
-
-							</label>
-
-							<div class="d-flex">
-
-								<input
-
-									type="text"
-
-									name="search"
-
-									class="form-control me-2"
-
-									placeholder="Search by name"
-
-									value="${param.search}">
-
-								<button
-
-									type="submit"
-
-									class="btn btn-warning">
-
-									<i class="fa-solid fa-search"></i>
-
-								</button>
-
-							</div>
-
-						</div>
-
-					</form>
+					<img
+						src="${pageContext.request.contextPath}/assets/images/restaurants/${restaurant.imagePath}"
+						class="img-fluid rounded" alt="${restaurant.name}"
+						onerror="this.src='https://via.placeholder.com/300x200/FFC107/1A1A2E?text=${restaurant.name}'">
 
 				</div>
 
-			</div>
+				<div class="col-lg-9">
 
-		</div>
+					<h2>${restaurant.name}</h2>
 
-	</section>
+					<p>${restaurant.cuisine}</p>
 
-	<!-- ==========================================
-				MENU ITEMS TABLE
-	========================================== -->
+					<div class="d-flex gap-3">
 
-	<section class="menu-table py-4">
+						<span class="badge bg-warning text-dark"> ⭐
+							${restaurant.rating} </span> <span> <i
+							class="fa-solid fa-clock me-2"></i> ${restaurant.deliveryTime}
+							mins
 
-		<div class="container">
+						</span> <span> <i class="fa-solid fa-location-dot me-2"></i>
 
-			<div class="card shadow-sm">
-
-				<div class="card-header">
-
-					<h5>
-
-						All Menu Items
-
-					</h5>
-
-				</div>
-
-				<div class="card-body">
-
-					<table class="table table-hover">
-
-						<thead>
-
-							<tr>
-
-								<th>ID</th>
-
-								<th>Item Name</th>
-
-								<th>Restaurant</th>
-
-								<th>Price</th>
-
-								<th>Category</th>
-
-								<th>Available</th>
-
-								<th>Actions</th>
-
-							</tr>
-
-						</thead>
-
-						<tbody>
-
-							<c:forEach
-
-								var="item"
-
-								items="${menuItems}">
-
-								<tr>
-
-									<td>
-
-										${item.menuId}
-
-									</td>
-
-									<td>
-
-										${item.itemName}
-
-									</td>
-
-									<td>
-
-										${item.restaurantName}
-
-									</td>
-
-									<td>
-
-										₹ ${item.price}
-
-									</td>
-
-									<td>
-
-										<span class="badge ${item.category == 'Veg' ? 'bg-success' : 'bg-danger'}">
-
-											${item.category}
-
-										</span>
-
-									</td>
-
-									<td>
-
-										<c:choose>
-
-											<c:when test="${item.available}">
-
-												<span class="badge bg-success">
-
-													Yes
-
-												</span>
-
-											</c:when>
-
-											<c:otherwise>
-
-												<span class="badge bg-secondary">
-
-													No
-
-												</span>
-
-											</c:otherwise>
-
-										</c:choose>
-
-									</td>
-
-									<td>
-
-										<a
-
-											href="${pageContext.request.contextPath}/admin/menu.jsp?action=edit&id=${item.menuId}"
-
-											class="btn btn-sm btn-outline-warning">
-
-											<i class="fa-solid fa-pen"></i>
-
-										</a>
-
-										<a
-
-											href="${pageContext.request.contextPath}/admin/menu?action=delete&id=${item.menuId}"
-
-											class="btn btn-sm btn-outline-danger"
-
-											onclick="return confirm('Are you sure?')">
-
-											<i class="fa-solid fa-trash"></i>
-
-										</a>
-
-									</td>
-
-								</tr>
-
-							</c:forEach>
-
-							<c:if test="${empty menuItems}">
-
-								<tr>
-
-									<td colspan="7" class="text-center text-muted">
-
-										No menu items found.
-
-									</td>
-
-								</tr>
-
-							</c:if>
-
-						</tbody>
-
-					</table>
-
-					<!-- ==========================================
-								PAGINATION
-					========================================== -->
-
-					<div class="d-flex justify-content-between align-items-center mt-4">
-
-						<span class="text-muted small">
-
-							Showing ${startIndex} to ${endIndex} of ${totalCount} entries
+							${restaurant.address}
 
 						</span>
-
-						<nav>
-
-							<ul class="pagination mb-0">
-
-								<li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
-
-									<a class="page-link"
-
-									   href="${pageContext.request.contextPath}/admin/menu?page=${currentPage - 1}&restaurantId=${param.restaurantId}&category=${param.category}&search=${param.search}">
-
-										Previous
-
-									</a>
-
-								</li>
-
-								<c:forEach begin="1" end="${totalPages}" var="i">
-
-									<li class="page-item ${i == currentPage ? 'active' : ''}">
-
-										<a class="page-link"
-
-										   href="${pageContext.request.contextPath}/admin/menu?page=${i}&restaurantId=${param.restaurantId}&category=${param.category}&search=${param.search}">
-
-											${i}
-
-										</a>
-
-									</li>
-
-								</c:forEach>
-
-								<li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
-
-									<a class="page-link"
-
-									   href="${pageContext.request.contextPath}/admin/menu?page=${currentPage + 1}&restaurantId=${param.restaurantId}&category=${param.category}&search=${param.search}">
-
-										Next
-
-									</a>
-
-								</li>
-
-							</ul>
-
-						</nav>
 
 					</div>
 
@@ -449,301 +61,157 @@
 	</section>
 
 	<!-- ==========================================
-				ADD/EDIT MENU MODAL
+				CATEGORY FILTER
 	========================================== -->
 
-	<div class="modal fade" id="menuModal" tabindex="-1">
+	<section class="category-filter py-3">
 
-		<div class="modal-dialog modal-lg">
+		<div class="container">
 
-			<div class="modal-content">
+			<div class="d-flex flex-wrap gap-2">
 
-				<div class="modal-header">
+				<a
+					href="${pageContext.request.contextPath}/menu?restaurantId=${restaurant.restaurantId}"
+					class="btn ${empty param.category ? 'btn-warning' : 'btn-outline-warning'}">
 
-					<h5 class="modal-title">
+					All </a>
 
-						${action == 'edit' ? 'Edit Menu Item' : 'Add Menu Item'}
+				<c:forEach var="cat" items="${categories}">
 
-					</h5>
+					<a
+						href="${pageContext.request.contextPath}/menu?restaurantId=${restaurant.restaurantId}&category=${cat}"
+						class="btn ${param.category == cat ? 'btn-warning' : 'btn-outline-warning'}">
 
-					<button
+						${cat} </a>
 
-						type="button"
-
-						class="btn-close"
-
-						data-bs-dismiss="modal">
-
-					</button>
-
-				</div>
-
-				<div class="modal-body">
-
-					<form
-
-						id="menuForm"
-
-						action="${pageContext.request.contextPath}/admin/menu"
-
-						method="post">
-
-						<input type="hidden" name="action" value="${action}">
-
-						<input type="hidden" name="menuId" value="${menuItem.menuId}">
-
-						<div class="row">
-
-							<div class="col-md-6 mb-3">
-
-								<label class="form-label">
-
-									Item Name
-
-								</label>
-
-								<input
-
-									type="text"
-
-									class="form-control"
-
-									name="itemName"
-
-									value="${menuItem.itemName}"
-
-									required>
-
-							</div>
-
-							<div class="col-md-6 mb-3">
-
-								<label class="form-label">
-
-									Restaurant
-
-								</label>
-
-								<select
-
-									name="restaurantId"
-
-									class="form-select"
-
-									required>
-
-									<option value="">
-
-										Select Restaurant
-
-									</option>
-
-									<c:forEach
-
-										var="rest"
-
-										items="${restaurantList}">
-
-										<option
-
-											value="${rest.restaurantId}"
-
-											${rest.restaurantId == menuItem.restaurantId ? 'selected' : ''}>
-
-											${rest.name}
-
-										</option>
-
-									</c:forEach>
-
-								</select>
-
-							</div>
-
-							<div class="col-md-6 mb-3">
-
-								<label class="form-label">
-
-									Price (₹)
-
-								</label>
-
-								<input
-
-									type="number"
-
-									step="0.01"
-
-									min="0"
-
-									class="form-control"
-
-									name="price"
-
-									value="${menuItem.price}"
-
-									required>
-
-							</div>
-
-							<div class="col-md-6 mb-3">
-
-								<label class="form-label">
-
-									Category
-
-								</label>
-
-								<select
-
-									name="category"
-
-									class="form-select"
-
-									required>
-
-									<option value="Veg"
-
-										${menuItem.category == 'Veg' ? 'selected' : ''}>
-
-										Veg
-
-									</option>
-
-									<option value="Non-Veg"
-
-										${menuItem.category == 'Non-Veg' ? 'selected' : ''}>
-
-										Non-Veg
-
-									</option>
-
-									<option value="Beverage"
-
-										${menuItem.category == 'Beverage' ? 'selected' : ''}>
-
-										Beverage
-
-									</option>
-
-									<option value="Dessert"
-
-										${menuItem.category == 'Dessert' ? 'selected' : ''}>
-
-										Dessert
-
-									</option>
-
-								</select>
-
-							</div>
-
-							<div class="col-md-12 mb-3">
-
-								<label class="form-label">
-
-									Description
-
-								</label>
-
-								<textarea
-
-									class="form-control"
-
-									name="description"
-
-									rows="2">${menuItem.description}</textarea>
-
-							</div>
-
-							<div class="col-md-6 mb-3">
-
-								<div class="form-check">
-
-									<input
-
-										class="form-check-input"
-
-										type="checkbox"
-
-										name="available"
-
-										id="availableCheck"
-
-										${menuItem.available ? 'checked' : ''}>
-
-									<label
-
-										class="form-check-label"
-
-										for="availableCheck">
-
-										Available
-
-									</label>
-
-								</div>
-
-							</div>
-
-						</div>
-
-						<button
-
-							type="submit"
-
-							class="btn btn-warning">
-
-							<i class="fa-solid fa-save me-2"></i>
-
-							Save Menu Item
-
-						</button>
-
-					</form>
-
-				</div>
+				</c:forEach>
 
 			</div>
 
 		</div>
 
-	</div>
+	</section>
+
+	<!-- ==========================================
+				MENU ITEMS
+	========================================== -->
+
+	<section class="menu-items py-4">
+
+		<div class="container">
+
+			<div class="row">
+
+				<c:choose>
+
+					<c:when test="${not empty menuList}">
+
+						<c:forEach var="item" items="${menuList}">
+
+							<div class="col-lg-4 col-md-6 mb-4">
+
+								<div class="card menu-card h-100 shadow-sm">
+
+									<img
+										src="${pageContext.request.contextPath}/assets/images/menu/${item.imagePath}"
+										class="card-img-top" alt="${item.itemName}"
+										onerror="this.src='https://via.placeholder.com/300x200/FFC107/1A1A2E?text=${item.itemName}'">
+
+									<div class="card-body">
+
+										<div class="d-flex justify-content-between">
+
+											<h5>${item.itemName}</h5>
+
+											<%-- Veg/Non-Veg using category --%>
+											<c:choose>
+												<c:when
+													test="${item.category == 'Pizza' || item.category == 'Burger' || item.category == 'South Indian' || item.category == 'Beverage' || item.category == 'Dessert' || item.category == 'Healthy'}">
+													<span class="badge bg-success">Veg</span>
+												</c:when>
+												<c:otherwise>
+													<span class="badge bg-danger">Non-Veg</span>
+												</c:otherwise>
+											</c:choose>
+
+										</div>
+
+										<p>${item.description}</p>
+
+										<h5>₹ ${item.price}</h5>
+
+										<c:if test="${not item.available}">
+
+											<span class="badge bg-secondary"> Out of Stock </span>
+
+										</c:if>
+
+									</div>
+
+									<div class="card-footer bg-white">
+
+										<form action="${pageContext.request.contextPath}/cart"
+											method="post">
+
+											<input type="hidden" name="action" value="add"> <input
+												type="hidden" name="menuId" value="${item.itemId}">
+											<!-- FIXED: menuId → itemId -->
+
+											<input type="hidden" name="restaurantId"
+												value="${restaurant.restaurantId}">
+
+											<div class="row g-2">
+												<div class="col-5">
+													<input type="number" class="form-control" name="quantity"
+														value="1" min="1" ${not item.available ? 'disabled' : ''}>
+												</div>
+												<div class="col-7">
+													<button type="submit" class="btn btn-warning w-100"
+														${not item.available ? 'disabled' : ''}>
+														<i class="fa-solid fa-cart-plus me-2"></i> Add to Cart
+													</button>
+												</div>
+											</div>
+
+										</form>
+									</div>
+
+								</div>
+
+							</div>
+
+						</c:forEach>
+
+					</c:when>
+
+					<c:otherwise>
+
+						<div class="col-12">
+
+							<div class="alert alert-info text-center">
+
+								<h4>No Items Available</h4>
+
+								<p>Please check back later</p>
+
+							</div>
+
+						</div>
+
+					</c:otherwise>
+
+				</c:choose>
+
+			</div>
+
+		</div>
+
+	</section>
 
 </main>
 
-<!-- ==========================================
-			SCRIPT TO OPEN MODAL IF ACTION IS add/edit
-========================================== -->
-
-<script>
-
-	window.onload = function() {
-
-		const urlParams = new URLSearchParams(window.location.search);
-
-		const action = urlParams.get('action');
-
-		if (action === 'add' || action === 'edit') {
-
-			const modal = new bootstrap.Modal(
-
-				document.getElementById('menuModal')
-
-			);
-
-			modal.show();
-
-		}
-
-	};
-
-</script>
-
-<script
-
-	src="${pageContext.request.contextPath}/assets/js/admin-menu.js">
-
+<script src="${pageContext.request.contextPath}/assets/js/menu.js">
+	
 </script>
 
 <%@ include file="../includes/footer.jsp"%>

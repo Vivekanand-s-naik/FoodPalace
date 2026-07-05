@@ -4,31 +4,30 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 public class TestConnection {
+	public static void main(String[] args) {
 
-    public static void main(String[] args) {
+		try (Connection connection = DBConnection.getConnection()) {
 
-        Connection connection = DBConnection.getConnection();
+			if (connection != null) {
+				System.out.println("================================");
+				System.out.println("Database Connected Successfully!");
+				System.out.println("================================");
 
-        if (connection != null) {
-            System.out.println("================================");
-            System.out.println("Database Connected Successfully!");
-            System.out.println("================================");
-            try {
-            	PreparedStatement pstatement =  connection.prepareStatement("SELECT * FROM USERS");
-            	ResultSet res = pstatement.executeQuery();
-            	while (res.next())
-            	System.out.println(res.getString("full_name"));
-            	
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				PreparedStatement ps = connection.prepareStatement("SELECT * FROM users");
+				ResultSet rs = ps.executeQuery();
+
+				while (rs.next()) {
+					System.out.println(rs.getString("full_name"));
+				}
+
+			} else {
+				System.out.println("Database Connection Failed!");
 			}
-            DBConnection.closeConnection(connection);
-        } else {
-            System.out.println("================================");
-            System.out.println("Database Connection Failed!");
-            System.out.println("================================");
-        }
-    }
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

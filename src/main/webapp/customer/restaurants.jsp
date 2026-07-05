@@ -1,9 +1,7 @@
-<%@ page language="java"
-	contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ taglib prefix="c"
-	uri="jakarta.tags.core"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
 <%@ include file="../includes/header.jsp"%>
 
@@ -24,17 +22,9 @@
 
 			<div class="text-center">
 
-				<h1>
+				<h1>Find Your Favourite Restaurant</h1>
 
-					Find Your Favourite Restaurant
-
-				</h1>
-
-				<p>
-
-					Discover the best restaurants in your area
-
-				</p>
+				<p>Discover the best restaurants in your area</p>
 
 			</div>
 
@@ -50,79 +40,49 @@
 
 		<div class="container">
 
-			<form
-
-				action="${pageContext.request.contextPath}/RestaurantServlet"
-
-				method="get"
-
-				class="row g-3">
+			<form action="${pageContext.request.contextPath}/RestaurantServlet"
+				method="get" class="row g-3">
 
 				<div class="col-md-5">
 
-					<input
-
-						type="text"
-
-						class="form-control"
-
-						name="keyword"
-
+					<input type="text" class="form-control" name="keyword"
 						placeholder="Search by restaurant or cuisine"
-
 						value="${param.keyword}">
 
 				</div>
 
 				<div class="col-md-3">
 
-					<select
+					<select class="form-select" name="cuisine">
 
-						class="form-select"
+						<option value="">All Cuisines</option>
 
-						name="cuisine">
+						<option value="Indian"
+							${param.cuisine == 'Indian' ? 'selected' : ''}>Indian</option>
 
-						<option value="">
-
-							All Cuisines
-
-						</option>
-
-						<option value="Indian" ${param.cuisine == 'Indian' ? 'selected' : ''}>
-
-							Indian
+						<option value="Chinese"
+							${param.cuisine == 'Chinese' ? 'selected' : ''}>Chinese
 
 						</option>
 
-						<option value="Chinese" ${param.cuisine == 'Chinese' ? 'selected' : ''}>
-
-							Chinese
-
-						</option>
-
-						<option value="Italian" ${param.cuisine == 'Italian' ? 'selected' : ''}>
-
-							Italian
+						<option value="Italian"
+							${param.cuisine == 'Italian' ? 'selected' : ''}>Italian
 
 						</option>
 
-						<option value="Mexican" ${param.cuisine == 'Mexican' ? 'selected' : ''}>
-
-							Mexican
+						<option value="Mexican"
+							${param.cuisine == 'Mexican' ? 'selected' : ''}>Mexican
 
 						</option>
 
 						<option value="Thai" ${param.cuisine == 'Thai' ? 'selected' : ''}>
 
-							Thai
+							Thai</option>
 
-						</option>
+						<option value="Japanese"
+							${param.cuisine == 'Japanese' ? 'selected' : ''}>
 
-						<option value="Japanese" ${param.cuisine == 'Japanese' ? 'selected' : ''}>
-
-							Japanese
-
-						</option>
+							Japanese</option>
 
 					</select>
 
@@ -130,23 +90,15 @@
 
 				<div class="col-md-2">
 
-					<select
-
-						class="form-select"
-
-						name="sort">
+					<select class="form-select" name="sort">
 
 						<option value="rating" ${param.sort == 'rating' ? 'selected' : ''}>
 
-							Rating
-
-						</option>
+							Rating</option>
 
 						<option value="name" ${param.sort == 'name' ? 'selected' : ''}>
 
-							Name
-
-						</option>
+							Name</option>
 
 					</select>
 
@@ -154,15 +106,9 @@
 
 				<div class="col-md-2">
 
-					<button
+					<button type="submit" class="btn btn-warning w-100">
 
-						type="submit"
-
-						class="btn btn-warning w-100">
-
-						<i class="fa-solid fa-search me-2"></i>
-
-						Search
+						<i class="fa-solid fa-search me-2"></i> Search
 
 					</button>
 
@@ -187,48 +133,29 @@
 				<c:choose>
 
 					<c:when test="${not empty restaurantList}">
-
-						<c:forEach
-
-							var="restaurant"
-
-							items="${restaurantList}">
+						<c:forEach var="restaurant" items="${restaurantList}">
 
 							<div class="col-lg-4 col-md-6 mb-4">
 
 								<div class="card restaurant-card h-100 shadow-sm">
 
 									<img
-
 										src="${pageContext.request.contextPath}/assets/images/restaurants/${restaurant.imagePath}"
-
-										class="card-img-top"
-
-										alt="${restaurant.name}">
+										class="card-img-top" alt="${restaurant.name}"
+										onerror="this.src='${pageContext.request.contextPath}/assets/images/restaurants/restaurant-placeholder.jpg'">
 
 									<div class="card-body">
 
 										<div class="d-flex justify-content-between">
 
-											<h5>
+											<h5>${restaurant.name}</h5>
 
-												${restaurant.name}
-
-											</h5>
-
-											<span class="badge bg-warning text-dark">
-
-												⭐ ${restaurant.rating}
-
-											</span>
+											<span class="badge bg-warning text-dark"> ⭐
+												${restaurant.rating} </span>
 
 										</div>
 
-										<p class="text-muted">
-
-											${restaurant.cuisine}
-
-										</p>
+										<p class="text-muted">${restaurant.cuisine}</p>
 
 										<p>
 
@@ -248,11 +175,7 @@
 
 										<c:if test="${restaurant.active}">
 
-											<span class="badge bg-success">
-
-												Open
-
-											</span>
+											<span class="badge bg-success"> Open </span>
 
 										</c:if>
 
@@ -261,14 +184,8 @@
 									<div class="card-footer bg-white">
 
 										<a
-
-											href="${pageContext.request.contextPath}/MenuServlet?restaurantId=${restaurant.restaurantId}"
-
-											class="btn btn-warning w-100">
-
-											View Menu
-
-										</a>
+											href="${pageContext.request.contextPath}/menu?restaurantId=${restaurant.restaurantId}"
+											class="btn btn-warning w-100"> View Menu </a>
 
 									</div>
 
@@ -286,17 +203,9 @@
 
 							<div class="alert alert-warning text-center">
 
-								<h4>
+								<h4>No Restaurants Found</h4>
 
-									No Restaurants Found
-
-								</h4>
-
-								<p>
-
-									Try searching with another keyword
-
-								</p>
+								<p>Try searching with another keyword</p>
 
 							</div>
 
@@ -321,40 +230,29 @@
 						<li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
 
 							<a class="page-link"
+							href="${pageContext.request.contextPath}/RestaurantServlet?page=${currentPage - 1}&keyword=${param.keyword}&cuisine=${param.cuisine}&sort=${param.sort}">
 
-							   href="${pageContext.request.contextPath}/RestaurantServlet?page=${currentPage - 1}&keyword=${param.keyword}&cuisine=${param.cuisine}&sort=${param.sort}">
-
-								Previous
-
-							</a>
+								Previous </a>
 
 						</li>
 
 						<c:forEach begin="1" end="${totalPages}" var="i">
 
-							<li class="page-item ${i == currentPage ? 'active' : ''}">
+							<li class="page-item ${i == currentPage ? 'active' : ''}"><a
+								class="page-link"
+								href="${pageContext.request.contextPath}/RestaurantServlet?page=${i}&keyword=${param.keyword}&cuisine=${param.cuisine}&sort=${param.sort}">
 
-								<a class="page-link"
-
-								   href="${pageContext.request.contextPath}/RestaurantServlet?page=${i}&keyword=${param.keyword}&cuisine=${param.cuisine}&sort=${param.sort}">
-
-									${i}
-
-								</a>
-
-							</li>
+									${i} </a></li>
 
 						</c:forEach>
 
-						<li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
+						<li
+							class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
 
 							<a class="page-link"
+							href="${pageContext.request.contextPath}/RestaurantServlet?page=${currentPage + 1}&keyword=${param.keyword}&cuisine=${param.cuisine}&sort=${param.sort}">
 
-							   href="${pageContext.request.contextPath}/RestaurantServlet?page=${currentPage + 1}&keyword=${param.keyword}&cuisine=${param.cuisine}&sort=${param.sort}">
-
-								Next
-
-							</a>
+								Next </a>
 
 						</li>
 
@@ -371,9 +269,8 @@
 </main>
 
 <script
-
 	src="${pageContext.request.contextPath}/assets/js/restaurants.js">
-
+	
 </script>
 
 <%@ include file="../includes/footer.jsp"%>

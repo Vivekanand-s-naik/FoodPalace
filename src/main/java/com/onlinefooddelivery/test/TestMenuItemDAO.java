@@ -34,7 +34,7 @@ public class TestMenuItemDAO {
         item.setPrice(249);
         item.setCategory("Pizza");
         item.setAvailable(true);
-        item.setImage("pizza.jpg");
+        item.setImagePath("pizza.jpg");
 
         boolean result = dao.addMenuItem(item);
 

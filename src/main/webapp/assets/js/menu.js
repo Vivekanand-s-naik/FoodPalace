@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     addToCartButtons.forEach(function(btn) {
         btn.addEventListener('click', function(e) {
+			console.log("Button clicked");
             // Check if button is disabled (out of stock)
             if (this.disabled) return;
 
@@ -128,5 +129,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+	document.querySelectorAll("form").forEach(form => {
+	    form.addEventListener("submit", function() {
+	        console.log("Form submitted");
+	    });
+	});
     console.log('Menu Page JS Loaded');
-});
+
+	});

@@ -120,21 +120,21 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 
     @Override
     public List<Restaurant> getAllRestaurants() {
-
         List<Restaurant> restaurants = new ArrayList<>();
-
+        String sql = "SELECT * FROM restaurants";
+        
         try (Connection con = DBConnection.getConnection();
-             PreparedStatement ps = con.prepareStatement(GET_ALL);
+             PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
-
+            
             while (rs.next()) {
                 restaurants.add(extractRestaurant(rs));
             }
-
+            System.out.println("getAllRestaurants returned: " + restaurants.size() + " records");
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return restaurants;
     }
 
@@ -182,9 +182,7 @@ public class RestaurantDAOImpl implements RestaurantDAO {
     }
 
     private Restaurant extractRestaurant(ResultSet rs) throws SQLException {
-
         Restaurant restaurant = new Restaurant();
-
         restaurant.setRestaurantId(rs.getInt("restaurant_id"));
         restaurant.setName(rs.getString("name"));
         restaurant.setOwnerName(rs.getString("owner_name"));
@@ -194,7 +192,15 @@ public class RestaurantDAOImpl implements RestaurantDAO {
         restaurant.setCuisine(rs.getString("cuisine"));
         restaurant.setRating(rs.getDouble("rating"));
         restaurant.setActive(rs.getBoolean("is_active"));
-
+        restaurant.setImagePath(rs.getString("image_path"));
+        
+        // deliveryTime might not be in the table yet
+        try {
+            restaurant.setDeliveryTime(rs.getInt("delivery_time"));
+        } catch (SQLException e) {
+            restaurant.setDeliveryTime(30); // Default value
+        }
+        
         return restaurant;
     }
 }

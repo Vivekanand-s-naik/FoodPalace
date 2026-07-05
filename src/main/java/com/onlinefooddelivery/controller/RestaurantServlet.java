@@ -46,26 +46,38 @@ public class RestaurantServlet extends HttpServlet {
         }
 
         try {
-            List<Restaurant> restaurants;
+            List<Restaurant> restaurants = null;
 
-            // Filter by keyword or cuisine
-            if (keyword != null && !keyword.trim().isEmpty()) {
-                // Search by keyword (name or cuisine)
+            // Get all restaurants first
+            restaurants = restaurantDAO.getAllRestaurants();
+            
+            // Debug: Check if restaurants are fetched
+            System.out.println("Total restaurants fetched: " + (restaurants != null ? restaurants.size() : 0));
+
+            // Filter by keyword
+            if (keyword != null && !keyword.trim().isEmpty() && restaurants != null) {
                 String searchTerm = keyword.trim().toLowerCase();
-                List<Restaurant> allRestaurants = restaurantDAO.getAllRestaurants();
-                if (allRestaurants != null) {
-                    restaurants = allRestaurants.stream()
-                            .filter(r -> r.getName().toLowerCase().contains(searchTerm) ||
-                                        (r.getCuisine() != null && r.getCuisine().toLowerCase().contains(searchTerm)))
-                            .filter(Restaurant::isActive)
-                            .collect(Collectors.toList());
-                } else {
-                    restaurants = null;
-                }
-            } else if (cuisine != null && !cuisine.trim().isEmpty() && !"All Cuisines".equals(cuisine)) {
-                restaurants = restaurantDAO.getRestaurantsByCuisine(cuisine.trim());
-            } else {
-                restaurants = restaurantDAO.getActiveRestaurants();
+                restaurants = restaurants.stream()
+                        .filter(r -> r.getName().toLowerCase().contains(searchTerm) ||
+                                    (r.getCuisine() != null && r.getCuisine().toLowerCase().contains(searchTerm)))
+                        .filter(Restaurant::isActive)
+                        .collect(Collectors.toList());
+                System.out.println("After keyword filter: " + restaurants.size());
+            } 
+            // Filter by cuisine
+            else if (cuisine != null && !cuisine.trim().isEmpty() && !"All Cuisines".equals(cuisine) && restaurants != null) {
+                restaurants = restaurants.stream()
+                        .filter(r -> cuisine.equals(r.getCuisine()))
+                        .filter(Restaurant::isActive)
+                        .collect(Collectors.toList());
+                System.out.println("After cuisine filter: " + restaurants.size());
+            } 
+            // Get active restaurants only
+            else if (restaurants != null) {
+                restaurants = restaurants.stream()
+                        .filter(Restaurant::isActive)
+                        .collect(Collectors.toList());
+                System.out.println("After active filter: " + restaurants.size());
             }
 
             // Sorting
@@ -89,7 +101,7 @@ public class RestaurantServlet extends HttpServlet {
                 paginatedList = restaurants.subList(startIndex, endIndex);
             }
 
-            // Set attributes
+            // Set attributes - make sure the attribute name matches JSP
             request.setAttribute("restaurantList", paginatedList);
             request.setAttribute("currentPage", page);
             request.setAttribute("totalPages", totalPages);
@@ -99,6 +111,8 @@ public class RestaurantServlet extends HttpServlet {
             request.setAttribute("keyword", keyword);
             request.setAttribute("cuisine", cuisine);
             request.setAttribute("sort", sort);
+
+            System.out.println("Sending to JSP with " + (paginatedList != null ? paginatedList.size() : 0) + " restaurants");
 
             request.getRequestDispatcher("/customer/restaurants.jsp").forward(request, response);
 

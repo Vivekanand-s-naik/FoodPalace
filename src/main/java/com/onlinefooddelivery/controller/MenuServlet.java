@@ -17,6 +17,7 @@ import com.onlinefooddelivery.dao.impl.RestaurantDAOImpl;
 import com.onlinefooddelivery.model.MenuItem;
 import com.onlinefooddelivery.model.Restaurant;
 
+
 @WebServlet("/menu")
 public class MenuServlet extends HttpServlet {
 

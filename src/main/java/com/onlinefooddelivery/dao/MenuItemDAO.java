@@ -19,5 +19,9 @@ public interface MenuItemDAO {
     List<MenuItem> getMenuItemsByRestaurantId(int restaurantId);
 
     List<MenuItem> getAvailableMenuItems();
+    
+    List<MenuItem> getMenuItemsByCategory(int restaurantId, String category);
+
+    List<String> getCategoriesByRestaurantId(int restaurantId);
 
 }
