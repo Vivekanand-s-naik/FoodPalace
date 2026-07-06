@@ -79,6 +79,16 @@
     padding: 15px 20px;
     vertical-align: middle;
     border-bottom: 1px solid var(--border-color);
+    word-break: break-word;
+}
+
+.admin-users .table-responsive {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.admin-users .table .d-flex.gap-2 {
+    gap: 0.5rem !important;
 }
 
 .admin-users .table tbody tr:hover {

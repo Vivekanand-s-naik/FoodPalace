@@ -156,7 +156,9 @@
 
 				<div class="card-body">
 
-					<table class="table table-hover">
+					<div class="table-responsive">
+
+						<table class="table table-hover align-middle mb-0">
 
 						<thead>
 
@@ -252,33 +254,37 @@
 
 									</td>
 
-									<td>
+<td class="text-nowrap">
 
-										<button
+											<div class="d-flex gap-2 align-items-center">
 
-											class="btn btn-sm btn-outline-warning"
+												<button
 
-											data-bs-toggle="modal"
+													class="btn btn-sm btn-outline-warning"
 
-											data-bs-target="#userModal${user.userId}">
+													data-bs-toggle="modal"
 
-											<i class="fa-solid fa-eye"></i>
+													data-bs-target="#userModal${user.userId}">
 
-										</button>
+													<i class="fa-solid fa-eye"></i>
 
-										<c:if test="${user.userId != sessionScope.userId}">
+												</button>
 
-											<a
+												<c:if test="${user.userId != sessionScope.userId}">
 
-												href="${pageContext.request.contextPath}/admin/users?action=toggle&id=${user.userId}"
+													<a
 
-												class="btn btn-sm ${user.active ? 'btn-outline-danger' : 'btn-outline-success'}">
+														href="${pageContext.request.contextPath}/admin/users?action=toggle&id=${user.userId}"
 
-												<i class="fa-solid ${user.active ? 'fa-ban' : 'fa-check'}"></i>
+														class="btn btn-sm ${user.active ? 'btn-outline-danger' : 'btn-outline-success'}">
 
-											</a>
+														<i class="fa-solid ${user.active ? 'fa-ban' : 'fa-check'}"></i>
 
-										</c:if>
+													</a>
+
+												</c:if>
+
+											</div>
 
 									</td>
 
@@ -302,7 +308,9 @@
 
 						</tbody>
 
-					</table>
+						</table>
+
+					</div>
 
 					<!-- ==========================================
 								PAGINATION

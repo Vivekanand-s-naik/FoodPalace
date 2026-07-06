@@ -3,16 +3,16 @@ package com.onlinefooddelivery.controller;
 import java.io.IOException;
 import java.util.List;
 
+import com.onlinefooddelivery.dao.UserDAO;
+import com.onlinefooddelivery.dao.impl.UserDAOImpl;
+import com.onlinefooddelivery.model.User;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
-import com.onlinefooddelivery.dao.UserDAO;
-import com.onlinefooddelivery.dao.impl.UserDAOImpl;
-import com.onlinefooddelivery.model.User;
 
 @WebServlet("/admin/users")
 public class AdminUserServlet extends HttpServlet {
@@ -31,8 +31,8 @@ public class AdminUserServlet extends HttpServlet {
 
         // Check admin session
         HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("userRole") == null || 
-            !"ADMIN".equals(session.getAttribute("userRole"))) {
+        if (session == null || session.getAttribute("userRole") == null
+                || !"ADMIN".equals(session.getAttribute("userRole"))) {
             response.sendRedirect(request.getContextPath() + "/auth/login.jsp");
             return;
         }
@@ -86,14 +86,14 @@ public class AdminUserServlet extends HttpServlet {
             if (search != null && !search.trim().isEmpty() && users != null) {
                 String searchTerm = search.trim().toLowerCase();
                 users = users.stream()
-                        .filter(u -> u.getFullName().toLowerCase().contains(searchTerm) ||
-                                    u.getEmail().toLowerCase().contains(searchTerm) ||
-                                    (u.getPhone() != null && u.getPhone().contains(searchTerm)))
+                        .filter(u -> u.getFullName().toLowerCase().contains(searchTerm)
+                        || u.getEmail().toLowerCase().contains(searchTerm)
+                        || (u.getPhone() != null && u.getPhone().contains(searchTerm)))
                         .toList();
             }
 
             // Calculate active users
-            int activeUsers = users != null ? users.size() : 0;
+            int activeUsers = users != null ? (int) users.stream().filter(User::isActive).count() : 0;
 
             // Pagination
             int totalCount = users != null ? users.size() : 0;
