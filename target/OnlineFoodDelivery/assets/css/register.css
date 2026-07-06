@@ -1,0 +1,150 @@
+/* ==========================================
+   REGISTER PAGE STYLES
+   ========================================== */
+
+.register-page {
+    background: linear-gradient(135deg, #FFF8E1 0%, #FFFFFF 100%);
+    min-height: 100vh;
+}
+
+.register-section {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    padding: 40px 0;
+}
+
+/* ---------- Register Banner ---------- */
+.register-banner {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.register-banner img {
+    max-width: 70%;
+    margin-bottom: 30px;
+}
+
+.register-banner h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-bottom: 15px;
+}
+
+.register-banner p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* ---------- Register Card ---------- */
+.register-card {
+    border-radius: var(--border-radius);
+    background: white;
+}
+
+.register-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    font-size: 2rem;
+    color: white;
+}
+
+.register-card h2 {
+    font-weight: 700;
+    color: var(--dark-color);
+}
+
+.register-card .form-control {
+    padding: 12px 15px;
+    border-radius: var(--border-radius-sm);
+}
+
+.register-card .input-group-text {
+    background-color: white;
+    border-right: none;
+    color: var(--text-muted);
+}
+
+.register-card .input-group .form-control {
+    border-left: none;
+}
+
+.register-card textarea {
+    border-radius: var(--border-radius-sm);
+    resize: vertical;
+}
+
+/* ---------- Password Toggle ---------- */
+#togglePassword,
+#toggleConfirmPassword {
+    border-left: none;
+}
+
+#togglePassword:hover,
+#toggleConfirmPassword:hover {
+    background-color: transparent;
+}
+
+/* ---------- Terms Checkbox ---------- */
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* ---------- Login Link ---------- */
+.register-card .fw-semibold {
+    color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.register-card .fw-semibold:hover {
+    color: var(--secondary-color);
+}
+
+/* ---------- Radio Buttons ---------- */
+.register-card .form-check-inline {
+    margin-right: 15px;
+}
+
+.register-card .form-check-inline .form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 992px) {
+    .register-banner {
+        display: none;
+    }
+
+    .register-card {
+        margin: 20px auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .register-card .card-body {
+        padding: 30px 20px !important;
+    }
+
+    .register-card h2 {
+        font-size: 1.5rem;
+    }
+
+    .register-card .form-check-inline {
+        margin-right: 8px;
+    }
+
+    .register-card .form-check-inline .form-check-label {
+        font-size: 0.85rem;
+    }
+}

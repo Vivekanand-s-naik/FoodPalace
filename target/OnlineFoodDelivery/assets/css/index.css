@@ -1,0 +1,210 @@
+/* ==========================================
+   HOME PAGE STYLES
+   ========================================== */
+
+/* ---------- Hero Section ---------- */
+.hero-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #FFF8E1 0%, #FFFFFF 100%);
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--dark-color);
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-section h1 span {
+    color: var(--primary-color);
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    max-width: 500px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.hero-section .btn-warning {
+    padding: 14px 40px;
+    font-size: 1.1rem;
+}
+
+.hero-section .btn-outline-dark {
+    padding: 14px 40px;
+    font-size: 1.1rem;
+}
+
+.hero-section img {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* ---------- Features Section ---------- */
+.features-section {
+    padding: 80px 0;
+    background-color: white;
+}
+
+.features-section .fa-solid {
+    color: var(--primary-color);
+}
+
+.features-section h4 {
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+/* ---------- Categories Section ---------- */
+.categories-section {
+    padding: 80px 0;
+    background-color: #F8F9FA;
+}
+
+.category-card {
+    background: white;
+    padding: 30px 20px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+}
+
+.category-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.category-card i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.category-card h5 {
+    font-weight: 600;
+    margin: 0;
+}
+
+/* ---------- Restaurant Cards ---------- */
+.restaurant-card {
+    background: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    padding: 20px;
+    text-align: center;
+}
+
+.restaurant-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.restaurant-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--border-radius-sm);
+    margin-bottom: 15px;
+}
+
+.restaurant-card h4 {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.restaurant-card p {
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+/* ---------- CTA Section ---------- */
+.cta-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #1A1A2E 0%, #2D2D44 100%);
+    color: white;
+}
+
+.cta-section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.cta-section p {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 30px;
+}
+
+.cta-section .btn-warning {
+    padding: 14px 50px;
+    font-size: 1.1rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 992px) {
+    .hero-section {
+        padding: 60px 0;
+        min-height: auto;
+        text-align: center;
+    }
+
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-section p {
+        margin: 0 auto 30px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-section img {
+        margin-top: 40px;
+        max-width: 80%;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .hero-section .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .category-card {
+        padding: 20px 15px;
+    }
+
+    .restaurant-card img {
+        height: 150px;
+    }
+}

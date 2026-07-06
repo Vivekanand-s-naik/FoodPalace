@@ -24,21 +24,19 @@ public class CartItemDAOImpl implements CartItemDAO {
 
     // Updated: Join with menu_items to get item details
     private static final String GET_BY_CART =
-            "SELECT ci.*, mi.item_name, mi.price, mi.image, mi.description " +
+            "SELECT ci.cart_item_id, ci.cart_id, ci.item_id, ci.quantity, " +
+            "mi.item_name, mi.price, mi.image, mi.description, " +
+            "mi.restaurant_id, COALESCE(r.name, 'Restaurant') AS restaurant_name " +
             "FROM cart_items ci " +
             "INNER JOIN menu_items mi ON ci.item_id = mi.item_id " +
-            "WHERE ci.cart_id=?";
+            "LEFT JOIN restaurants r ON mi.restaurant_id = r.restaurant_id " +
+            "WHERE ci.cart_id=? ORDER BY mi.restaurant_id, ci.cart_item_id";
 
     private static final String CLEAR_CART =
             "DELETE FROM cart_items WHERE cart_id=?";
 
     @Override
     public boolean addCartItem(CartItem cartItem) {
-        System.out.println("=== ADDING CART ITEM ===");
-        System.out.println("Cart ID: " + cartItem.getCartId());
-        System.out.println("Item ID: " + cartItem.getItemId());
-        System.out.println("Quantity: " + cartItem.getQuantity());
-
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(INSERT)) {
 
@@ -46,13 +44,10 @@ public class CartItemDAOImpl implements CartItemDAO {
             ps.setInt(2, cartItem.getItemId());
             ps.setInt(3, cartItem.getQuantity());
 
-            int result = ps.executeUpdate();
-            System.out.println("Insert result: " + result);
-            return result > 0;
+            return ps.executeUpdate() > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
-            System.err.println("SQL Error: " + e.getMessage());
         }
 
         return false;
@@ -174,6 +169,8 @@ public class CartItemDAOImpl implements CartItemDAO {
         cartItem.setPrice(rs.getDouble("price"));
         cartItem.setImagePath(rs.getString("image"));
         cartItem.setDescription(rs.getString("description"));
+        cartItem.setRestaurantId(rs.getInt("restaurant_id"));
+        cartItem.setRestaurantName(rs.getString("restaurant_name"));
         return cartItem;
     }
 }

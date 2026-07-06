@@ -1,0 +1,14 @@
+/* ==========================================
+   HEADER STYLES
+   ========================================== */
+
+/* ---------- No specific header styles needed ---------- */
+/* Header is minimal - just the opening HTML tags */
+/* All styling is handled by navbar.css and common.css */
+
+/* ---------- Print Styles ---------- */
+@media print {
+    header {
+        display: none;
+    }
+}

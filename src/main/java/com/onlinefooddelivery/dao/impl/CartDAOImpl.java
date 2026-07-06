@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import com.onlinefooddelivery.dao.CartDAO;
 import com.onlinefooddelivery.model.Cart;
@@ -30,11 +31,19 @@ public class CartDAOImpl implements CartDAO {
     public boolean addCart(Cart cart) {
 
         try (Connection con = DBConnection.getConnection();
-             PreparedStatement ps = con.prepareStatement(INSERT)) {
+             PreparedStatement ps = con.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, cart.getUserId());
 
-            return ps.executeUpdate() > 0;
+            int rows = ps.executeUpdate();
+            if (rows > 0) {
+                try (ResultSet keys = ps.getGeneratedKeys()) {
+                    if (keys.next()) {
+                        cart.setCartId(keys.getInt(1));
+                    }
+                }
+                return true;
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();

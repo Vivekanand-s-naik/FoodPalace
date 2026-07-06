@@ -1,0 +1,309 @@
+/* ==========================================
+   ADMIN RESTAURANTS STYLES
+   ========================================== */
+
+.admin-restaurants {
+    background-color: #F0F2F5;
+    min-height: 100vh;
+}
+
+/* ---------- Header ---------- */
+.admin-restaurants .page-header {
+    background: linear-gradient(135deg, #1A1A2E, #2D2D44);
+    padding: 30px 0;
+}
+
+.admin-restaurants .page-header h1 {
+    color: white;
+    font-weight: 700;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.admin-restaurants .page-header .btn-warning {
+    padding: 10px 25px;
+    font-weight: 600;
+    border-radius: var(--border-radius-sm);
+}
+
+.admin-restaurants .page-header .btn-warning:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ---------- Table Card ---------- */
+.admin-restaurants .card {
+    border: none;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.admin-restaurants .card-header {
+    background: white;
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 20px;
+}
+
+.admin-restaurants .card-header h5 {
+    font-weight: 600;
+    color: var(--dark-color);
+    margin: 0;
+}
+
+.admin-restaurants .card-body {
+    padding: 0;
+}
+
+/* ---------- Search Form ---------- */
+.admin-restaurants .card-header .form-control {
+    border-radius: var(--border-radius-sm);
+    padding: 8px 15px;
+}
+
+.admin-restaurants .card-header .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+}
+
+.admin-restaurants .card-header .btn-outline-warning {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    border-radius: var(--border-radius-sm);
+    padding: 8px 20px;
+}
+
+.admin-restaurants .card-header .btn-outline-warning:hover {
+    background-color: var(--primary-color);
+    color: var(--dark-color);
+}
+
+/* ---------- Restaurant Table ---------- */
+.admin-restaurants .table {
+    margin: 0;
+}
+
+.admin-restaurants .table thead th {
+    background-color: #F8F9FA;
+    border-bottom: 2px solid var(--border-color);
+    padding: 15px 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.admin-restaurants .table tbody td {
+    padding: 15px 20px;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-restaurants .table tbody tr:hover {
+    background-color: #FFF8E1;
+}
+
+.admin-restaurants .table .badge {
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    border-radius: 20px;
+}
+
+.admin-restaurants .table .badge.bg-success {
+    background-color: #28A745 !important;
+}
+
+.admin-restaurants .table .badge.bg-danger {
+    background-color: #DC3545 !important;
+}
+
+/* ---------- Table Actions ---------- */
+.admin-restaurants .table .btn-outline-warning {
+    padding: 4px 10px;
+    border-radius: var(--border-radius-sm);
+    margin-right: 5px;
+}
+
+.admin-restaurants .table .btn-outline-warning:hover {
+    background-color: var(--primary-color);
+    color: var(--dark-color);
+}
+
+.admin-restaurants .table .btn-outline-danger {
+    padding: 4px 10px;
+    border-radius: var(--border-radius-sm);
+}
+
+.admin-restaurants .table .btn-outline-danger:hover {
+    background-color: #DC3545;
+    color: white;
+}
+
+/* ---------- Pagination ---------- */
+.admin-restaurants .mt-4 {
+    padding: 15px 20px;
+}
+
+.admin-restaurants .pagination .page-link {
+    color: var(--dark-color);
+    border-radius: var(--border-radius-sm);
+    margin: 0 4px;
+    border: none;
+    padding: 8px 14px;
+    font-size: 0.9rem;
+}
+
+.admin-restaurants .pagination .page-link:hover {
+    background-color: var(--primary-color);
+    color: var(--dark-color);
+}
+
+.admin-restaurants .pagination .page-item.active .page-link {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--dark-color);
+}
+
+.admin-restaurants .pagination .page-item.disabled .page-link {
+    color: var(--text-muted);
+    background-color: transparent;
+}
+
+/* ---------- Modal ---------- */
+#restaurantModal .modal-content {
+    border-radius: var(--border-radius);
+    border: none;
+}
+
+#restaurantModal .modal-header {
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 20px;
+}
+
+#restaurantModal .modal-header h5 {
+    font-weight: 700;
+    color: var(--dark-color);
+}
+
+#restaurantModal .modal-body {
+    padding: 20px 25px;
+}
+
+#restaurantModal .modal-body .form-control {
+    padding: 10px 15px;
+    border-radius: var(--border-radius-sm);
+}
+
+#restaurantModal .modal-body .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+}
+
+#restaurantModal .modal-body .form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+#restaurantModal .modal-body .btn-warning {
+    padding: 12px 30px;
+    font-weight: 600;
+    border-radius: var(--border-radius-sm);
+}
+
+#restaurantModal .modal-body .btn-warning:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 992px) {
+    .admin-restaurants .page-header .d-flex {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start !important;
+    }
+
+    .admin-restaurants .card-header .row .col-md-6 {
+        margin-bottom: 10px;
+    }
+
+    .admin-restaurants .table {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-restaurants .page-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .admin-restaurants .table thead th,
+    .admin-restaurants .table tbody td {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+    }
+
+    .admin-restaurants .table .btn {
+        padding: 2px 8px;
+        font-size: 0.8rem;
+    }
+
+    .admin-restaurants .table .badge {
+        font-size: 0.65rem;
+        padding: 4px 10px;
+    }
+
+    #restaurantModal .modal-body {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .admin-restaurants .page-header .btn-warning {
+        width: 100%;
+        text-align: center;
+    }
+
+    .admin-restaurants .card-header .row .col-md-6 {
+        width: 100%;
+        flex: 0 0 100%;
+    }
+
+    .admin-restaurants .card-header form {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .admin-restaurants .card-header form .form-control {
+        width: 100%;
+    }
+
+    .admin-restaurants .card-header form .btn {
+        width: 100%;
+    }
+
+    .admin-restaurants .table {
+        font-size: 0.75rem;
+    }
+
+    .admin-restaurants .table thead th,
+    .admin-restaurants .table tbody td {
+        padding: 8px 6px;
+    }
+
+    .admin-restaurants .table .btn {
+        font-size: 0.7rem;
+        padding: 2px 6px;
+    }
+
+    .admin-restaurants .pagination .page-link {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    .admin-restaurants .mt-4 {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center !important;
+    }
+}

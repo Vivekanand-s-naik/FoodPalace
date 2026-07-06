@@ -38,14 +38,22 @@ public class OrderDAOImpl implements OrderDAO {
     public boolean addOrder(Order order) {
 
         try (Connection con = DBConnection.getConnection();
-             PreparedStatement ps = con.prepareStatement(INSERT)) {
+             PreparedStatement ps = con.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, order.getUserId());
             ps.setInt(2, order.getRestaurantId());
             ps.setDouble(3, order.getTotalAmount());
             ps.setString(4, order.getStatus());
 
-            return ps.executeUpdate() > 0;
+            int rows = ps.executeUpdate();
+            if (rows > 0) {
+                try (ResultSet keys = ps.getGeneratedKeys()) {
+                    if (keys.next()) {
+                        order.setOrderId(keys.getInt(1));
+                    }
+                }
+                return true;
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();

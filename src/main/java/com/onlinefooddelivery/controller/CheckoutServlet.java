@@ -1,7 +1,10 @@
 package com.onlinefooddelivery.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -28,6 +31,7 @@ import com.onlinefooddelivery.model.CartItem;
 import com.onlinefooddelivery.model.Order;
 import com.onlinefooddelivery.model.OrderItem;
 import com.onlinefooddelivery.model.Payment;
+import com.onlinefooddelivery.model.RestaurantCartGroup;
 
 @WebServlet("/checkout")
 public class CheckoutServlet extends HttpServlet {
@@ -63,36 +67,34 @@ public class CheckoutServlet extends HttpServlet {
         int userId = (int) session.getAttribute("userId");
 
         try {
-            // Get user addresses
             List<Address> addressList = addressDAO.getAddressesByUserId(userId);
 
-            // Get cart
             Cart cart = cartDAO.getCartByUserId(userId);
             if (cart == null) {
                 response.sendRedirect(request.getContextPath() + "/cart");
                 return;
             }
 
-            // Get cart items
             List<CartItem> cartItems = cartItemDAO.getCartItemsByCartId(cart.getCartId());
             if (cartItems == null || cartItems.isEmpty()) {
                 response.sendRedirect(request.getContextPath() + "/cart");
                 return;
             }
 
-            // Calculate totals
+            List<RestaurantCartGroup> restaurantGroups = groupItemsByRestaurant(cartItems);
             double subTotal = 0;
             for (CartItem item : cartItems) {
                 subTotal += item.getTotalPrice();
             }
-            
-            double deliveryFee = 40.0;
+
+            int restaurantCount = restaurantGroups.size();
+            double deliveryFee = 40.0 * restaurantCount;
             double tax = subTotal * 0.05;
             double grandTotal = subTotal + deliveryFee + tax;
 
-            // Set attributes
             request.setAttribute("addressList", addressList);
             request.setAttribute("cartItems", cartItems);
+            request.setAttribute("restaurantGroups", restaurantGroups);
             request.setAttribute("cart", cart);
             request.setAttribute("subTotal", subTotal);
             request.setAttribute("deliveryFee", deliveryFee);
@@ -122,9 +124,7 @@ public class CheckoutServlet extends HttpServlet {
 
         String addressIdParam = request.getParameter("addressId");
         String paymentMethod = request.getParameter("paymentMethod");
-        String instructions = request.getParameter("instructions");
 
-        // Validate inputs
         if (addressIdParam == null || addressIdParam.trim().isEmpty() ||
             paymentMethod == null || paymentMethod.trim().isEmpty()) {
             request.setAttribute("errorMessage", "Please select address and payment method.");
@@ -133,93 +133,100 @@ public class CheckoutServlet extends HttpServlet {
         }
 
         try {
-            int addressId = Integer.parseInt(addressIdParam.trim());
-
-            // Get cart
             Cart cart = cartDAO.getCartByUserId(userId);
             if (cart == null) {
                 response.sendRedirect(request.getContextPath() + "/cart");
                 return;
             }
 
-            // Get cart items
             List<CartItem> cartItems = cartItemDAO.getCartItemsByCartId(cart.getCartId());
             if (cartItems == null || cartItems.isEmpty()) {
                 response.sendRedirect(request.getContextPath() + "/cart");
                 return;
             }
 
-            // Calculate total
-            double subTotal = 0;
-            int restaurantId = 0;
+            Map<Integer, List<CartItem>> itemsByRestaurant = new LinkedHashMap<>();
             for (CartItem item : cartItems) {
-                subTotal += item.getTotalPrice();
-                // Get restaurantId from menu item
-                // For simplicity, assume all items are from same restaurant
-                // We'll use the first item's restaurant
-                if (restaurantId == 0) {
-                    // restaurantId = menuItemDAO.getMenuItemById(item.getItemId()).getRestaurantId();
+                itemsByRestaurant.computeIfAbsent(item.getRestaurantId(), id -> new ArrayList<>()).add(item);
+            }
+
+            List<Integer> createdOrderIds = new ArrayList<>();
+
+            for (Map.Entry<Integer, List<CartItem>> entry : itemsByRestaurant.entrySet()) {
+                int restaurantId = entry.getKey();
+                List<CartItem> restaurantItems = entry.getValue();
+
+                double restaurantSubTotal = 0;
+                for (CartItem item : restaurantItems) {
+                    restaurantSubTotal += item.getTotalPrice();
                 }
-            }
-            
-            double deliveryFee = 40.0;
-            double tax = subTotal * 0.05;
-            double grandTotal = subTotal + deliveryFee + tax;
 
-            // Create order
-            Order order = new Order();
-            order.setUserId(userId);
-            order.setRestaurantId(restaurantId); // This needs to be set from menu items
-            order.setTotalAmount(grandTotal);
-            order.setStatus("PLACED");
+                double restaurantDeliveryFee = 40.0;
+                double restaurantTax = restaurantSubTotal * 0.05;
+                double restaurantTotal = restaurantSubTotal + restaurantDeliveryFee + restaurantTax;
 
-            boolean orderSuccess = orderDAO.addOrder(order);
-            if (!orderSuccess) {
-                request.setAttribute("errorMessage", "Failed to place order. Please try again.");
-                doGet(request, response);
-                return;
-            }
+                Order order = new Order();
+                order.setUserId(userId);
+                order.setRestaurantId(restaurantId);
+                order.setTotalAmount(restaurantTotal);
+                order.setStatus("PLACED");
 
-            // Get the generated order ID
-            // Since we don't have a method to get last inserted ID, we'll get the latest order for user
-            List<Order> userOrders = orderDAO.getOrdersByUserId(userId);
-            Order latestOrder = userOrders != null && !userOrders.isEmpty() ? userOrders.get(0) : null;
-            
-            if (latestOrder == null) {
-                request.setAttribute("errorMessage", "Failed to retrieve order. Please contact support.");
-                doGet(request, response);
-                return;
-            }
+                if (!orderDAO.addOrder(order) || order.getOrderId() <= 0) {
+                    request.setAttribute("errorMessage", "Failed to place order. Please try again.");
+                    doGet(request, response);
+                    return;
+                }
 
-            // Add order items
-            for (CartItem cartItem : cartItems) {
-                OrderItem orderItem = new OrderItem();
-                orderItem.setOrderId(latestOrder.getOrderId());
-                orderItem.setItemId(cartItem.getItemId());
-                orderItem.setQuantity(cartItem.getQuantity());
-                // Price needs to be fetched from menu item
-                // For now, use a placeholder
-                // orderItem.setPrice(price);
-                orderItemDAO.addOrderItem(orderItem);
+                for (CartItem cartItem : restaurantItems) {
+                    OrderItem orderItem = new OrderItem();
+                    orderItem.setOrderId(order.getOrderId());
+                    orderItem.setItemId(cartItem.getItemId());
+                    orderItem.setQuantity(cartItem.getQuantity());
+                    orderItem.setPrice(cartItem.getPrice());
+                    orderItemDAO.addOrderItem(orderItem);
+                }
+
+                Payment payment = new Payment();
+                payment.setOrderId(order.getOrderId());
+                payment.setPaymentMethod(paymentMethod);
+                payment.setPaymentStatus("PENDING");
+                paymentDAO.addPayment(payment);
+
+                createdOrderIds.add(order.getOrderId());
             }
 
-            // Create payment
-            Payment payment = new Payment();
-            payment.setOrderId(latestOrder.getOrderId());
-            payment.setPaymentMethod(paymentMethod);
-            payment.setPaymentStatus("PENDING");
-            paymentDAO.addPayment(payment);
-
-            // Clear cart
             cartItemDAO.clearCart(cart.getCartId());
 
-            // Redirect to order details
-            response.sendRedirect(request.getContextPath() + "/order-details?orderId=" + latestOrder.getOrderId());
+            if (createdOrderIds.size() == 1) {
+                response.sendRedirect(request.getContextPath() + "/order-details?orderId=" + createdOrderIds.get(0));
+            } else {
+                response.sendRedirect(request.getContextPath() + "/orders");
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errorMessage", "An error occurred during checkout. Please try again.");
             doGet(request, response);
         }
+    }
+
+    private List<RestaurantCartGroup> groupItemsByRestaurant(List<CartItem> cartItems) {
+        List<RestaurantCartGroup> groups = new ArrayList<>();
+        Map<Integer, RestaurantCartGroup> groupMap = new LinkedHashMap<>();
+
+        for (CartItem item : cartItems) {
+            RestaurantCartGroup group = groupMap.computeIfAbsent(item.getRestaurantId(), id -> {
+                RestaurantCartGroup newGroup = new RestaurantCartGroup();
+                newGroup.setRestaurantId(id);
+                newGroup.setRestaurantName(item.getRestaurantName());
+                newGroup.setItems(new ArrayList<>());
+                return newGroup;
+            });
+            group.getItems().add(item);
+            group.setSubtotal(group.getSubtotal() + item.getTotalPrice());
+        }
+
+        groups.addAll(groupMap.values());
+        return groups;
     }
 }

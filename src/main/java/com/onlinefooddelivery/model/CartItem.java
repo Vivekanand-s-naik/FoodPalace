@@ -10,6 +10,8 @@ public class CartItem {
     private String imagePath;  
     private String description; 
     private String itemName;
+    private int restaurantId;
+    private String restaurantName;
 
 
 	public CartItem() {
@@ -87,6 +89,22 @@ public class CartItem {
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
 	}
+
+    public int getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(int restaurantId) {
+        this.restaurantId = restaurantId;
+    }
+
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
+    }
 
     
     @Override
