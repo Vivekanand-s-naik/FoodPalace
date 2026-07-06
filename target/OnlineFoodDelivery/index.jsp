@@ -352,7 +352,7 @@
 
 		</p>
 
-		<a href="${pageContext.request.contextPath}/restaurants.jsp"
+		<a href="${pageContext.request.contextPath}/restaurants"
 			class="btn btn-warning btn-lg">
 
 			Explore Restaurants
@@ -362,6 +362,10 @@
 	</div>
 
 </section>
+
+<script>
+	window.contextPath = '${pageContext.request.contextPath}';
+</script>
 
 <script
 src="${pageContext.request.contextPath}/assets/js/index.js">

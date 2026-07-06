@@ -112,7 +112,7 @@
 
 								<a
 
-									href="${pageContext.request.contextPath}/customer/orders.jsp"
+									href="${pageContext.request.contextPath}/orders"
 
 									class="btn btn-outline-warning">
 
@@ -168,7 +168,7 @@
 
 							<form
 
-								action="${pageContext.request.contextPath}/ProfileServlet"
+								action="${pageContext.request.contextPath}/profile"
 
 								method="post">
 
@@ -396,7 +396,7 @@
 
 													<a
 
-														href="${pageContext.request.contextPath}/ProfileServlet?action=setDefault&addressId=${address.addressId}"
+														href="${pageContext.request.contextPath}/profile?action=setDefault&addressId=${address.addressId}"
 
 														class="btn btn-sm btn-outline-success">
 
@@ -406,7 +406,7 @@
 
 													<a
 
-														href="${pageContext.request.contextPath}/ProfileServlet?action=deleteAddress&addressId=${address.addressId}"
+														href="${pageContext.request.contextPath}/profile?action=deleteAddress&addressId=${address.addressId}"
 
 														class="btn btn-sm btn-outline-danger"
 
@@ -484,11 +484,7 @@
 
 					<form
 
-						action="${pageContext.request.contextPath}/ProfileServlet"
-
-						method="post">
-
-						<input type="hidden" name="action" value="addAddress">
+							action="${pageContext.request.contextPath}/profile"
 
 						<div class="mb-3">
 
@@ -693,6 +689,10 @@
 	</div>
 
 </main>
+
+<script>
+	window.contextPath = '${pageContext.request.contextPath}';
+</script>
 
 <script
 

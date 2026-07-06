@@ -135,7 +135,7 @@
 
 					<li>
 
-						<a href="${pageContext.request.contextPath}/orders.jsp">
+						<a href="${pageContext.request.contextPath}/orders">
 
 							My Orders
 
@@ -145,7 +145,7 @@
 
 					<li>
 
-						<a href="${pageContext.request.contextPath}/customer/profile.jsp">
+						<a href="${pageContext.request.contextPath}/profile">
 
 							My Profile
 

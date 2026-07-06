@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function() {
         alert.className = 'alert alert-success alert-dismissible fade show';
         alert.innerHTML = `
             Address added successfully! 
-            <a href="/OnlineFoodDelivery/checkout" class="btn btn-warning btn-sm ms-3">
+            <a href="${window.contextPath || ''}/checkout" class="btn btn-warning btn-sm ms-3">
                 Return to Checkout
             </a>
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>

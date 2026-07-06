@@ -40,7 +40,7 @@
 
 	<!-- ==========================================
 				ORDER STATISTICS
-	========================================== -->
+	=========================================== -->
 
 	<section class="order-statistics py-4">
 
@@ -348,7 +348,7 @@
 
 										<a
 
-											href="${pageContext.request.contextPath}/customer/order-details.jsp?orderId=${order.orderId}"
+											href="${pageContext.request.contextPath}/order-details?orderId=${order.orderId}"
 
 											class="btn btn-warning">
 

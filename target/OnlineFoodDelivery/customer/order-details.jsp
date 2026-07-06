@@ -42,7 +42,7 @@
 
 				<a
 
-					href="${pageContext.request.contextPath}/customer/orders.jsp"
+					href="${pageContext.request.contextPath}/orders"
 
 					class="btn btn-outline-secondary">
 

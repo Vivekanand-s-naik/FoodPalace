@@ -31,7 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const heading = this.querySelector('h5');
             const cuisine = heading ? heading.textContent : null;
             if (cuisine) {
-                window.location.href = '/OnlineFoodDelivery/customer/restaurants.jsp?cuisine=' + encodeURIComponent(cuisine);
+                const basePath = (window.contextPath || '') + '/restaurants';
+                window.location.href = basePath + '?cuisine=' + encodeURIComponent(cuisine);
             }
         });
     });

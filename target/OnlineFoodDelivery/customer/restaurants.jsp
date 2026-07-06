@@ -40,14 +40,15 @@
 
 		<div class="container">
 
-			<form action="${pageContext.request.contextPath}/RestaurantServlet"
+			<form action="${pageContext.request.contextPath}/restaurants"
 				method="get" class="row g-3">
+				<input type="hidden" name="page" value="1">
 
 				<div class="col-md-5">
 
 					<input type="text" class="form-control" name="keyword"
 						placeholder="Search by restaurant or cuisine"
-						value="${param.keyword}">
+						value="${keyword}">
 
 				</div>
 
@@ -55,32 +56,32 @@
 
 					<select class="form-select" name="cuisine">
 
-						<option value="">All Cuisines</option>
+						<option value="" ${empty cuisine ? 'selected' : ''}>All Cuisines</option>
 
 						<option value="Indian"
-							${param.cuisine == 'Indian' ? 'selected' : ''}>Indian</option>
+							${cuisine == 'Indian' ? 'selected' : ''}>Indian</option>
 
 						<option value="Chinese"
-							${param.cuisine == 'Chinese' ? 'selected' : ''}>Chinese
+							${cuisine == 'Chinese' ? 'selected' : ''}>Chinese
 
 						</option>
 
 						<option value="Italian"
-							${param.cuisine == 'Italian' ? 'selected' : ''}>Italian
+							${cuisine == 'Italian' ? 'selected' : ''}>Italian
 
 						</option>
 
 						<option value="Mexican"
-							${param.cuisine == 'Mexican' ? 'selected' : ''}>Mexican
+							${cuisine == 'Mexican' ? 'selected' : ''}>Mexican
 
 						</option>
 
-						<option value="Thai" ${param.cuisine == 'Thai' ? 'selected' : ''}>
+						<option value="Thai" ${cuisine == 'Thai' ? 'selected' : ''}>
 
 							Thai</option>
 
 						<option value="Japanese"
-							${param.cuisine == 'Japanese' ? 'selected' : ''}>
+							${cuisine == 'Japanese' ? 'selected' : ''}>
 
 							Japanese</option>
 
@@ -92,11 +93,11 @@
 
 					<select class="form-select" name="sort">
 
-						<option value="rating" ${param.sort == 'rating' ? 'selected' : ''}>
+						<option value="rating" ${empty sort || sort == 'rating' ? 'selected' : ''}>
 
 							Rating</option>
 
-						<option value="name" ${param.sort == 'name' ? 'selected' : ''}>
+						<option value="name" ${sort == 'name' ? 'selected' : ''}>
 
 							Name</option>
 
@@ -111,6 +112,16 @@
 						<i class="fa-solid fa-search me-2"></i> Search
 
 					</button>
+
+				</div>
+
+				<div class="col-md-2">
+
+					<a href="${pageContext.request.contextPath}/restaurants" class="btn btn-outline-secondary w-100">
+
+						<i class="fa-solid fa-rotate-left me-2"></i> Reset
+
+					</a>
 
 				</div>
 
@@ -230,7 +241,7 @@
 						<li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
 
 							<a class="page-link"
-							href="${pageContext.request.contextPath}/RestaurantServlet?page=${currentPage - 1}&keyword=${param.keyword}&cuisine=${param.cuisine}&sort=${param.sort}">
+							href="${pageContext.request.contextPath}/restaurants?page=${currentPage - 1}&keyword=${keyword}&cuisine=${cuisine}&sort=${sort}">
 
 								Previous </a>
 
@@ -240,7 +251,7 @@
 
 							<li class="page-item ${i == currentPage ? 'active' : ''}"><a
 								class="page-link"
-								href="${pageContext.request.contextPath}/RestaurantServlet?page=${i}&keyword=${param.keyword}&cuisine=${param.cuisine}&sort=${param.sort}">
+								href="${pageContext.request.contextPath}/restaurants?page=${i}&keyword=${keyword}&cuisine=${cuisine}&sort=${sort}">
 
 									${i} </a></li>
 
@@ -250,7 +261,7 @@
 							class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
 
 							<a class="page-link"
-							href="${pageContext.request.contextPath}/RestaurantServlet?page=${currentPage + 1}&keyword=${param.keyword}&cuisine=${param.cuisine}&sort=${param.sort}">
+							href="${pageContext.request.contextPath}/restaurants?page=${currentPage + 1}&keyword=${keyword}&cuisine=${cuisine}&sort=${sort}">
 
 								Next </a>
 
