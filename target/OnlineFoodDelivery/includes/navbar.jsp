@@ -30,6 +30,9 @@
 
 		<div class="collapse navbar-collapse" id="mainNavbar">
 
+			<c:set var="isAuthenticated" value="${not empty sessionScope.loggedUser or not empty sessionScope.userId}" />
+			<c:set var="isAdmin" value="${sessionScope.userRole == 'ADMIN'}" />
+
 			<ul class="navbar-nav mx-auto">
 
 				<li class="nav-item">
@@ -47,18 +50,20 @@
 				</li>
 				--%>
 
-				<li class="nav-item">
-					<a class="nav-link" href="${pageContext.request.contextPath}/cart">
-						<i class="fa-solid fa-cart-shopping"></i> Cart
-					</a>
-				</li>
+				<c:if test="${isAuthenticated}">
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/cart">
+							<i class="fa-solid fa-cart-shopping"></i> Cart
+						</a>
+					</li>
 
-				<li class="nav-item">
-					<a class="nav-link" href="${pageContext.request.contextPath}/orders">My Orders</a>
-				</li>
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/orders">My Orders</a>
+					</li>
+				</c:if>
 
 				<!-- Admin Dashboard (visible only to admin) -->
-				<c:if test="${sessionScope.userRole == 'ADMIN'}">
+				<c:if test="${isAdmin}">
 					<li class="nav-item">
 						<a class="nav-link text-warning" href="${pageContext.request.contextPath}/admin/dashboard">
 							<i class="fa-solid fa-gauge-high"></i> Dashboard
@@ -66,9 +71,11 @@
 					</li>
 				</c:if>
 
-				<li class="nav-item">
-					<a class="nav-link" href="${pageContext.request.contextPath}/profile">Profile</a>
-				</li>
+				<c:if test="${isAuthenticated}">
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/profile">Profile</a>
+					</li>
+				</c:if>
 
 			</ul>
 
@@ -80,7 +87,7 @@
 
 				<c:choose>
 
-					<c:when test="${not empty sessionScope.loggedUser}">
+					<c:when test="${isAuthenticated}">
 
 						<!-- Logged In -->
 						<span class="text-light me-2">
