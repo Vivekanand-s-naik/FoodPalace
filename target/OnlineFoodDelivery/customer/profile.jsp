@@ -486,207 +486,95 @@
 
 							action="${pageContext.request.contextPath}/profile"
 
-						<div class="mb-3">
+							method="post">
 
-							<label
+							<input type="hidden" name="action" value="addAddress">
 
-								class="form-label">
+							<div class="mb-3">
 
-								Address Type
+								<label class="form-label">Address Type</label>
 
-							</label>
+								<select class="form-select" name="addressType" required>
 
-							<select
+									<option value="Home">Home</option>
 
-								class="form-select"
+									<option value="Work">Work</option>
 
-								name="addressType"
+									<option value="Other">Other</option>
 
-								required>
-
-								<option value="Home">
-
-									Home
-
-								</option>
-
-								<option value="Work">
-
-									Work
-
-								</option>
-
-								<option value="Other">
-
-									Other
-
-								</option>
-
-							</select>
-
-						</div>
-
-						<div class="mb-3">
-
-							<label
-
-								class="form-label">
-
-								House/Flat No
-
-							</label>
-
-							<input
-
-								type="text"
-
-								class="form-control"
-
-								name="houseNo"
-
-								required>
-
-						</div>
-
-						<div class="mb-3">
-
-							<label
-
-								class="form-label">
-
-								Street
-
-							</label>
-
-							<input
-
-								type="text"
-
-								class="form-control"
-
-								name="street"
-
-								required>
-
-						</div>
-
-						<div class="row">
-
-							<div class="col-md-6 mb-3">
-
-								<label
-
-									class="form-label">
-
-									City
-
-								</label>
-
-								<input
-
-									type="text"
-
-									class="form-control"
-
-									name="city"
-
-									required>
+								</select>
 
 							</div>
 
-							<div class="col-md-6 mb-3">
+							<div class="mb-3">
 
-								<label
+								<label class="form-label">House/Flat No</label>
 
-									class="form-label">
-
-									State
-
-								</label>
-
-								<input
-
-									type="text"
-
-									class="form-control"
-
-									name="state"
-
-									required>
+								<input type="text" class="form-control" name="houseNo" required>
 
 							</div>
 
-						</div>
+							<div class="mb-3">
 
-						<div class="mb-3">
+								<label class="form-label">Street</label>
 
-							<label
+								<input type="text" class="form-control" name="street" required>
 
-								class="form-label">
+							</div>
 
-								Pincode
+							<div class="row">
 
-							</label>
+								<div class="col-md-6 mb-3">
 
-							<input
+									<label class="form-label">City</label>
 
-								type="text"
+									<input type="text" class="form-control" name="city" required>
 
-								class="form-control"
+								</div>
 
-								name="pincode"
+								<div class="col-md-6 mb-3">
 
-								pattern="[0-9]{5,6}"
+									<label class="form-label">State</label>
 
-								required>
+									<input type="text" class="form-control" name="state" required>
 
-						</div>
+								</div>
 
-						<div class="mb-3 form-check">
+							</div>
 
-							<input
+							<div class="mb-3">
 
-								class="form-check-input"
+								<label class="form-label">Pincode</label>
 
-								type="checkbox"
+								<input type="text" class="form-control" name="pincode" pattern="[0-9]{5,6}" required>
 
-								name="defaultAddress"
+							</div>
 
-								id="defaultAddress">
+							<div class="mb-3 form-check">
 
-							<label
+								<input class="form-check-input" type="checkbox" name="defaultAddress" id="defaultAddress">
 
-								class="form-check-label"
+								<label class="form-check-label" for="defaultAddress">Set as Default Address</label>
 
-								for="defaultAddress">
+							</div>
 
-								Set as Default Address
+							<button type="submit" class="btn btn-warning w-100">
 
-							</label>
+								<i class="fa-solid fa-save me-2"></i>
 
-						</div>
+								Save Address
 
-						<button
+							</button>
 
-							type="submit"
+						</form>
 
-							class="btn btn-warning w-100">
-
-							<i class="fa-solid fa-save me-2"></i>
-
-							Save Address
-
-						</button>
-
-					</form>
+					</div>
 
 				</div>
 
 			</div>
 
 		</div>
-
-	</div>
 
 </main>
 

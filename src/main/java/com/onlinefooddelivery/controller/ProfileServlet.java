@@ -3,19 +3,19 @@ package com.onlinefooddelivery.controller;
 import java.io.IOException;
 import java.util.List;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-
 import com.onlinefooddelivery.dao.AddressDAO;
 import com.onlinefooddelivery.dao.UserDAO;
 import com.onlinefooddelivery.dao.impl.AddressDAOImpl;
 import com.onlinefooddelivery.dao.impl.UserDAOImpl;
 import com.onlinefooddelivery.model.Address;
 import com.onlinefooddelivery.model.User;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/profile")
 public class ProfileServlet extends HttpServlet {
@@ -81,6 +81,15 @@ public class ProfileServlet extends HttpServlet {
             User user = userDAO.getUserById(userId);
             List<Address> addressList = addressDAO.getAddressesByUserId(userId);
 
+            if (session.getAttribute("successMessage") != null) {
+                request.setAttribute("successMessage", session.getAttribute("successMessage"));
+                session.removeAttribute("successMessage");
+            }
+            if (session.getAttribute("errorMessage") != null) {
+                request.setAttribute("errorMessage", session.getAttribute("errorMessage"));
+                session.removeAttribute("errorMessage");
+            }
+
             // Update session with latest user info
             if (user != null) {
                 session.setAttribute("userName", user.getFullName());
@@ -126,18 +135,18 @@ public class ProfileServlet extends HttpServlet {
                     user.setFullName(fullName);
                     user.setPhone(phone);
                     // user.setDob(dob); // if dob field exists
-                    
+
                     if (newPassword != null && !newPassword.trim().isEmpty()) {
                         user.setPassword(newPassword);
                     }
-                    
+
                     userDAO.updateUser(user);
-                    
+
                     // Update session
                     session.setAttribute("userName", user.getFullName());
                     session.setAttribute("userPhone", user.getPhone());
                 }
-                
+
                 request.setAttribute("successMessage", "Profile updated successfully!");
                 doGet(request, response);
                 return;
@@ -174,9 +183,15 @@ public class ProfileServlet extends HttpServlet {
                     }
                 }
 
-                addressDAO.addAddress(address);
-                request.setAttribute("successMessage", "Address added successfully!");
-                doGet(request, response);
+                boolean added = addressDAO.addAddress(address);
+                if (added) {
+                    session.setAttribute("successMessage", "Address added successfully!");
+                    response.sendRedirect(request.getContextPath() + "/profile");
+                    return;
+                }
+
+                session.setAttribute("errorMessage", "Unable to save address. Please try again.");
+                response.sendRedirect(request.getContextPath() + "/profile");
                 return;
             }
 
