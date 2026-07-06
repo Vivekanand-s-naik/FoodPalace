@@ -11,12 +11,13 @@ public class User {
     private String password;
     private String role;
     private Timestamp createdAt;
+    private boolean active;
 
     public User() {
     }
 
     public User(int userId, String fullName, String email, String phone,
-                String password, String role, Timestamp createdAt) {
+            String password, String role, Timestamp createdAt) {
         this.userId = userId;
         this.fullName = fullName;
         this.email = email;
@@ -82,15 +83,23 @@ public class User {
         this.createdAt = createdAt;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     @Override
     public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", fullName='" + fullName + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", role='" + role + '\'' +
-                ", createdAt=" + createdAt +
-                '}';
+        return "User{"
+                + "userId=" + userId
+                + ", fullName='" + fullName + '\''
+                + ", email='" + email + '\''
+                + ", phone='" + phone + '\''
+                + ", role='" + role + '\''
+                + ", createdAt=" + createdAt
+                + '}';
     }
 }

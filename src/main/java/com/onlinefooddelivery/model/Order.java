@@ -10,13 +10,15 @@ public class Order {
     private double totalAmount;
     private String status;
     private Timestamp orderDate;
+    private String customerName;
+    private String restaurantName;
 
     public Order() {
     }
 
     public Order(int orderId, int userId, int restaurantId,
-                 double totalAmount, String status,
-                 Timestamp orderDate) {
+            double totalAmount, String status,
+            Timestamp orderDate) {
         this.orderId = orderId;
         this.userId = userId;
         this.restaurantId = restaurantId;
@@ -73,15 +75,31 @@ public class Order {
         this.orderDate = orderDate;
     }
 
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
+    }
+
     @Override
     public String toString() {
-        return "Order{" +
-                "orderId=" + orderId +
-                ", userId=" + userId +
-                ", restaurantId=" + restaurantId +
-                ", totalAmount=" + totalAmount +
-                ", status='" + status + '\'' +
-                ", orderDate=" + orderDate +
-                '}';
+        return "Order{"
+                + "orderId=" + orderId
+                + ", userId=" + userId
+                + ", restaurantId=" + restaurantId
+                + ", totalAmount=" + totalAmount
+                + ", status='" + status + '\''
+                + ", orderDate=" + orderDate
+                + '}';
     }
 }
