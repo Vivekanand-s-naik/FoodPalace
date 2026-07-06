@@ -152,7 +152,9 @@ public class UserDAOImpl implements UserDAO {
 
             ResultSet rs = ps.executeQuery();
 
-            return extractUser(rs);
+            if (rs.next()) {
+                return extractUser(rs);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -162,26 +164,22 @@ public class UserDAOImpl implements UserDAO {
     }
 
     private User extractUser(ResultSet rs) throws SQLException {
-        if (rs.next()) {
-            User user = new User();
+        User user = new User();
 
-            user.setUserId(rs.getInt("user_id"));
-            user.setFullName(rs.getString("full_name"));
-            user.setEmail(rs.getString("email"));
-            user.setPhone(rs.getString("phone"));
-            user.setPassword(rs.getString("password"));
-            user.setRole(rs.getString("role"));
-            user.setCreatedAt(rs.getTimestamp("created_at"));
+        user.setUserId(rs.getInt("user_id"));
+        user.setFullName(rs.getString("full_name"));
+        user.setEmail(rs.getString("email"));
+        user.setPhone(rs.getString("phone"));
+        user.setPassword(rs.getString("password"));
+        user.setRole(rs.getString("role"));
+        user.setCreatedAt(rs.getTimestamp("created_at"));
 
-            try {
-                user.setActive(rs.getBoolean("is_active"));
-            } catch (SQLException e) {
-                user.setActive(true);
-            }
-
-            return user;
+        try {
+            user.setActive(rs.getBoolean("is_active"));
+        } catch (SQLException e) {
+            user.setActive(true);
         }
-        return null;
 
+        return user;
     }
 }

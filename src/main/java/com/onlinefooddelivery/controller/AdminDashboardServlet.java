@@ -3,13 +3,6 @@ package com.onlinefooddelivery.controller;
 import java.io.IOException;
 import java.util.List;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-
 import com.onlinefooddelivery.dao.OrderDAO;
 import com.onlinefooddelivery.dao.RestaurantDAO;
 import com.onlinefooddelivery.dao.UserDAO;
@@ -19,6 +12,13 @@ import com.onlinefooddelivery.dao.impl.UserDAOImpl;
 import com.onlinefooddelivery.model.Order;
 import com.onlinefooddelivery.model.Restaurant;
 import com.onlinefooddelivery.model.User;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/admin/dashboard")
 public class AdminDashboardServlet extends HttpServlet {
@@ -41,8 +41,8 @@ public class AdminDashboardServlet extends HttpServlet {
 
         // Check admin session
         HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("userRole") == null || 
-            !"ADMIN".equals(session.getAttribute("userRole"))) {
+        if (session == null || session.getAttribute("userRole") == null
+                || !"ADMIN".equals(session.getAttribute("userRole"))) {
             response.sendRedirect(request.getContextPath() + "/auth/login.jsp");
             return;
         }
@@ -103,7 +103,7 @@ public class AdminDashboardServlet extends HttpServlet {
             request.setAttribute("activeRestaurants", activeRestaurants);
             request.setAttribute("totalUsers", totalUsers);
             request.setAttribute("recentOrders", recentOrders);
-            request.setAttribute("orderTrendLabels", "\"" + String.join("\",\"", trendLabels) + "\"");
+            request.setAttribute("orderTrendLabels", "[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]");
             request.setAttribute("orderTrendData", "[12,18,15,22,28,35,20]");
             request.setAttribute("topCategories", categories);
 
