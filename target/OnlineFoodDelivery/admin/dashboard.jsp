@@ -53,193 +53,209 @@
 
 				<div class="col-lg-3 col-md-6">
 
-					<div class="card stat-card shadow-sm border-0">
+					<a href="${pageContext.request.contextPath}/admin/orders" class="text-decoration-none stat-card-link">
 
-						<div class="card-body">
+						<div class="card stat-card shadow-sm border-0 h-100">
 
-							<div class="d-flex justify-content-between">
+							<div class="card-body">
 
-								<div>
+								<div class="d-flex justify-content-between">
 
-									<h6 class="text-muted">
+									<div>
 
-										Total Orders
+										<h6 class="text-muted">
 
-									</h6>
+											Total Orders
 
-									<h2 class="fw-bold">
+										</h6>
 
-										${totalOrders}
+										<h2 class="fw-bold">
 
-									</h2>
+											${totalOrders}
+
+										</h2>
+
+									</div>
+
+									<i class="fa-solid fa-cart-shopping fa-3x text-warning"></i>
 
 								</div>
 
-								<i class="fa-solid fa-cart-shopping fa-3x text-warning"></i>
+								<small class="text-success">
+
+									<i class="fa-solid fa-arrow-up"></i>
+
+									12.5%
+
+								</small>
+
+								<small class="text-muted">
+
+									vs last week
+
+								</small>
 
 							</div>
 
-							<small class="text-success">
-
-								<i class="fa-solid fa-arrow-up"></i>
-
-								12.5%
-
-							</small>
-
-							<small class="text-muted">
-
-								vs last week
-
-							</small>
-
 						</div>
 
-					</div>
+					</a>
 
 				</div>
 
 				<div class="col-lg-3 col-md-6">
 
-					<div class="card stat-card shadow-sm border-0">
+					<a href="${pageContext.request.contextPath}/admin/orders" class="text-decoration-none stat-card-link">
 
-						<div class="card-body">
+						<div class="card stat-card shadow-sm border-0 h-100">
 
-							<div class="d-flex justify-content-between">
+							<div class="card-body">
 
-								<div>
+								<div class="d-flex justify-content-between">
 
-									<h6 class="text-muted">
+									<div>
 
-										Revenue
+										<h6 class="text-muted">
 
-									</h6>
+											Revenue
 
-									<h2 class="fw-bold">
+										</h6>
 
-										₹ ${totalRevenue}
+										<h2 class="fw-bold">
 
-									</h2>
+											₹ ${totalRevenue}
+
+										</h2>
+
+									</div>
+
+									<i class="fa-solid fa-indian-rupee-sign fa-3x text-success"></i>
 
 								</div>
 
-								<i class="fa-solid fa-indian-rupee-sign fa-3x text-success"></i>
+								<small class="text-success">
+
+									<i class="fa-solid fa-arrow-up"></i>
+
+									8.2%
+
+								</small>
+
+								<small class="text-muted">
+
+									vs last week
+
+								</small>
 
 							</div>
 
-							<small class="text-success">
-
-								<i class="fa-solid fa-arrow-up"></i>
-
-								8.2%
-
-							</small>
-
-							<small class="text-muted">
-
-								vs last week
-
-							</small>
-
 						</div>
 
-					</div>
+					</a>
 
 				</div>
 
 				<div class="col-lg-3 col-md-6">
 
-					<div class="card stat-card shadow-sm border-0">
+					<a href="${pageContext.request.contextPath}/admin/restaurants" class="text-decoration-none stat-card-link">
 
-						<div class="card-body">
+						<div class="card stat-card shadow-sm border-0 h-100">
 
-							<div class="d-flex justify-content-between">
+							<div class="card-body">
 
-								<div>
+								<div class="d-flex justify-content-between">
 
-									<h6 class="text-muted">
+									<div>
 
-										Active Restaurants
+										<h6 class="text-muted">
 
-									</h6>
+											Active Restaurants
 
-									<h2 class="fw-bold">
+										</h6>
 
-										${activeRestaurants}
+										<h2 class="fw-bold">
 
-									</h2>
+											${activeRestaurants}
+
+										</h2>
+
+									</div>
+
+									<i class="fa-solid fa-store fa-3x text-primary"></i>
 
 								</div>
 
-								<i class="fa-solid fa-store fa-3x text-primary"></i>
+								<small class="text-success">
+
+									<i class="fa-solid fa-arrow-up"></i>
+
+									3
+
+								</small>
+
+								<small class="text-muted">
+
+									new this month
+
+								</small>
 
 							</div>
 
-							<small class="text-success">
-
-								<i class="fa-solid fa-arrow-up"></i>
-
-								3
-
-							</small>
-
-							<small class="text-muted">
-
-								new this month
-
-							</small>
-
 						</div>
 
-					</div>
+					</a>
 
 				</div>
 
 				<div class="col-lg-3 col-md-6">
 
-					<div class="card stat-card shadow-sm border-0">
+					<a href="${pageContext.request.contextPath}/admin/users" class="text-decoration-none stat-card-link">
 
-						<div class="card-body">
+						<div class="card stat-card shadow-sm border-0 h-100">
 
-							<div class="d-flex justify-content-between">
+							<div class="card-body">
 
-								<div>
+								<div class="d-flex justify-content-between">
 
-									<h6 class="text-muted">
+									<div>
 
-										Total Users
+										<h6 class="text-muted">
 
-									</h6>
+											Total Users
 
-									<h2 class="fw-bold">
+										</h6>
 
-										${totalUsers}
+										<h2 class="fw-bold">
 
-									</h2>
+											${totalUsers}
+
+										</h2>
+
+									</div>
+
+									<i class="fa-solid fa-users fa-3x text-danger"></i>
 
 								</div>
 
-								<i class="fa-solid fa-users fa-3x text-danger"></i>
+								<small class="text-success">
+
+									<i class="fa-solid fa-arrow-up"></i>
+
+									5.7%
+
+								</small>
+
+								<small class="text-muted">
+
+									vs last week
+
+								</small>
 
 							</div>
 
-							<small class="text-success">
-
-								<i class="fa-solid fa-arrow-up"></i>
-
-								5.7%
-
-							</small>
-
-							<small class="text-muted">
-
-								vs last week
-
-							</small>
-
 						</div>
 
-					</div>
+					</a>
 
 				</div>
 

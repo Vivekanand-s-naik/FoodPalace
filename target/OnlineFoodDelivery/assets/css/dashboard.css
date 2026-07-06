@@ -1,0 +1,11 @@
+.stat-card-link {
+	text-decoration: none;
+	color: inherit;
+	display: block;
+}
+
+.stat-card-link:hover .card {
+	transform: translateY(-3px);
+	box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.12) !important;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
