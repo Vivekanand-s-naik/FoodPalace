@@ -148,13 +148,12 @@
 
 								<div class="mt-3">
 
-									<a
+									<a href="${pageContext.request.contextPath}/profile#address">
 
-									href="${pageContext.request.contextPath}/profile#address"
-
-										<i class="fa-solid fa-plus me-2"></i>
-
+										<i class="fa-solid fa-plus me-2">
 										Add New Address
+										</i>
+
 
 									</a>
 
@@ -596,7 +595,7 @@
 
 									<i class="fa-solid fa-shield-halved text-warning me-2"></i>
 
-									100% Safe & Secure
+									100% Safe and  Secure
 
 								</div>
 
